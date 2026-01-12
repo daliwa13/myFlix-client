@@ -38,7 +38,7 @@ Signup view
 - Parcel for build creation and deployment
 - 
 
-The app will typically be available at http://localhost:3000
+The app will typically be available at http://localhost:1234
 
 ## Build (development)
 - npm (in project's root location):

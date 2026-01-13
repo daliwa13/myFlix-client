@@ -1,11 +1,6 @@
 import PropTypes from "prop-types";
-import { MovieCard } from "../movie-card/movie-card";
 
-
-export const MovieView = ({ movie, movies, onBackClick }) => {
-  /*   const genreName = movie.genre.name;
-    const similarMovies = movies.filter((film) => film.genre.name === genreName && film.id !== movie.id);
-    console.log(similarMovies); */
+export const MovieView = ({ movie, onBackClick }) => {
 
   return (
     <div>
@@ -28,21 +23,7 @@ export const MovieView = ({ movie, movies, onBackClick }) => {
         <span>Genre: </span>
         <span>{movie.genre.name}</span>
       </div>
-      {/*       <br />
-      <h2>Similar Movies</h2>
-
-      <div>
-        {similarMovies.map((movie) =>
-          <MovieCard
-            key={movie.id}
-            movie={movie}
-            onMovieClick={(newSelectedMovie) => {
-              setSelectedMovie(newSelectedMovie);
-            }}
-          />
-        )}
-      </div>
-      <br /> */}
+      <br />
       <button onClick={onBackClick}>Back</button>
     </div>
   );

@@ -32,7 +32,7 @@ Signup view
 ### Main Stack
 - React (with React-DOM)
 - JavaScript ES6
-- SCSS
+- SCSS with Bootstrap
 - HTML5
 ### Additional tools and packages
 - Parcel for build creation and deployment

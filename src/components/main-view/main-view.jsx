@@ -1,51 +1,58 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import PropTypes from "prop-types";
 
 export const MainView = () => {
-  const [movies, setMovies] = useState([
-    {
-      id: 1,
-      title: "Pulp Fiction",
-      year: 1994,
-      genre: "Crime",
-      image: "https://m.media-amazon.com/images/M/MV5BYTViYTE3ZGQtNDBlMC00ZTAyLTkyODMtZGRiZDg0MjA2YThkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-      director: "Quentin Tarantino"
-    },
-    {
-      id: 2,
-      title: "Lion King",
-      year: 1994,
-      genre: "Animation",
-      image: "https://m.media-amazon.com/images/M/MV5BZjY3NjhkZjUtMzFiYS00MDQzLThhMDYtYjRkZDI1ODhmZDVkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-      director: "Roger Allers"
-    },
-    {
-      id: 3,
-      title: "Inception",
-      year: 2010,
-      genre: "Sci-Fi",
-      image: "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX1000_.jpg",
-      director: "Christopher Nolan"
-    },
-    {
-      id: 4,
-      title: "Lost in Translation",
-      year: 2003,
-      genre: "Drama",
-      image: "https://m.media-amazon.com/images/M/MV5BMTUxMzk0NDg1MV5BMl5BanBnXkFtZTgwNDg0NjkxMDI@._V1_FMjpg_UX1000_.jpg",
-      director: "Sofia Coppola"
-    }
-  ]);
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    fetch("https://my-flix-2a35e956c61d.herokuapp.com/movies")
+      .then((res) => res.json())
+      .then((data) => {
+        const moviesFromApi = data.map((movie) => {
+          return {
+            id: movie._id,
+            title: movie.title,
+            description: movie.description,
+            imageURL: movie.imageURL,
+            genre: { name: movie.genre.name, description: movie.genre.description },
+            director: {
+              name: movie.director.name, bio: movie.director.bio, birthYear: movie.director.birthYear, deathYear: movie.director.deathYear
+            }
+          };
+        });
+        setMovies(moviesFromApi);
+      })
+  }, []);
 
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   if (selectedMovie) {
+    const genreName = selectedMovie.genre.name;
+    const similarMovies = movies.filter((film) => film.genre.name === genreName && film.id !== selectedMovie.id);
+
     return (
-      <MovieView
-        movie={selectedMovie}
-        onBackClick={() => setSelectedMovie(null)}
-      />
+      <div>
+        <MovieView
+          movie={selectedMovie}
+          onBackClick={() => setSelectedMovie(null)}
+        />
+        <br />
+        <h2>Similar Movies</h2>
+
+        <div>
+          {similarMovies.map((movie) =>
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              onMovieClick={(newSelectedMovie) => {
+                setSelectedMovie(newSelectedMovie);
+              }}
+            />
+          )}
+        </div>
+      </div>
     );
   }
 
@@ -66,4 +73,25 @@ export const MainView = () => {
       )}
     </div>
   );
+};
+
+// Props constraints
+MainView.propTypes = {
+  movie: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    imageURL: PropTypes.string,
+    director: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      bio: PropTypes.string,
+      birthYear: PropTypes.number,
+      deathYear: PropTypes.number
+    }).isRequired,
+    genre: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      description: PropTypes.string
+    }).isRequired
+  }).isRequired,
+  onBackClick: PropTypes.func.isRequired
 };

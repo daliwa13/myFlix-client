@@ -1,13 +1,28 @@
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import { LoginView } from "../login-view/login-view";
+import { SignupView } from "../signup-view/signup-view";
 import PropTypes from "prop-types";
 
 export const MainView = () => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
   const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
 
+  // Fetching movies from the API
   useEffect(() => {
-    fetch("https://my-flix-2a35e956c61d.herokuapp.com/movies")
+    if (!token) {
+      return;
+    }
+
+    fetch("https://my-flix-2a35e956c61d.herokuapp.com/movies", {
+      // fetch("http://localhost:8080/movies", { // for local testing
+      headers: { Authorization: `Bearer ${token}` }
+    })
       .then((res) => res.json())
       .then((data) => {
         const moviesFromApi = data.map((movie) => {
@@ -24,10 +39,25 @@ export const MainView = () => {
         });
         setMovies(moviesFromApi);
       })
-  }, []);
+  }, [token]);
 
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  // If no user is logged in, show the login view
+  if (!user) {
+    return (
+      <div>
+        <LoginView
+          onLoggedIn={(user, token) => {
+            setUser(user);
+            setToken(token);
+          }}
+        />
+        or
+        <SignupView />
+      </div>
+    );
+  }
 
+  // If a movie is selected, show the movie view
   if (selectedMovie) {
     const genreName = selectedMovie.genre.name;
     const similarMovies = movies.filter((film) => film.genre.name === genreName && film.id !== selectedMovie.id);
@@ -57,9 +87,10 @@ export const MainView = () => {
   }
 
   if (movies.length === 0) {
-    return <div>The list is emppty!</div>;
+    return <div>The list is empty!</div>;
   }
 
+  // Main view showing list of movies
   return (
     <div>
       {movies.map((movie) =>
@@ -71,6 +102,7 @@ export const MainView = () => {
           }}
         />
       )}
+      <button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
     </div>
   );
 };

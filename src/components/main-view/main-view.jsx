@@ -4,6 +4,7 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import PropTypes from "prop-types";
+import { Row, Button, Col } from "react-bootstrap";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -12,6 +13,11 @@ export const MainView = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
+  const similarMovies = selectedMovie
+    ? movies.filter(
+      (film) => film.genre.name === selectedMovie.genre.name && film.id !== selectedMovie.id
+    ).slice(0, 3)
+    : [];
 
   // Fetching movies from the API
   useEffect(() => {
@@ -41,90 +47,64 @@ export const MainView = () => {
       })
   }, [token]);
 
-  // If no user is logged in, show the login view
-  if (!user) {
-    return (
-      <div>
-        <LoginView
-          onLoggedIn={(user, token) => {
-            setUser(user);
-            setToken(token);
-          }}
-        />
-        or
-        <SignupView />
-      </div>
-    );
-  }
-
-  // If a movie is selected, show the movie view + similar movies
-  if (selectedMovie) {
-    const genreName = selectedMovie.genre.name;
-    const similarMovies = movies.filter((film) => film.genre.name === genreName && film.id !== selectedMovie.id);
-
-    return (
-      <div>
-        <MovieView
-          movie={selectedMovie}
-          onBackClick={() => setSelectedMovie(null)}
-        />
-        <br />
-        <h2>Similar Movies</h2>
-
-        <div>
-          {similarMovies.map((movie) =>
-            <MovieCard
-              key={movie.id}
-              movie={movie}
-              onMovieClick={(newSelectedMovie) => {
-                setSelectedMovie(newSelectedMovie);
-              }}
-            />
-          )}
-        </div>
-      </div>
-    );
-  }
-
-  if (movies.length === 0) {
-    return <div>The list is empty!</div>;
-  }
-
-  // Main view showing list of movies
   return (
-    <div>
-      {movies.map((movie) =>
-        <MovieCard
-          key={movie.id}
-          movie={movie}
-          onMovieClick={(newSelectedMovie) => {
-            setSelectedMovie(newSelectedMovie);
-          }}
-        />
-      )}
-      <button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
-    </div>
+    <Row className="justify-content-md-center">
+      {!user ? (
+        <Col md={5}>
+          <LoginView
+            onLoggedIn={(user, token) => {
+              setUser(user);
+              setToken(token);
+            }}
+          />
+          or
+          <SignupView />
+        </Col>
+      ) : selectedMovie ? (
+        <Col md={8}>
+          <MovieView
+            movie={selectedMovie}
+            onBackClick={() => setSelectedMovie(null)}
+          />
+          <br />
+          <h2>Similar Movies</h2>
+          <Row className="mt-3">
+            {similarMovies.length === 0 ? (
+              <Col>No similar movies found.</Col>
+            ) : (
+              similarMovies.map((movie) => (
+                <Col md={4} key={movie.id} className="mb-3">
+                  <MovieCard
+                    movie={movie}
+                    onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)}
+                  />
+                </Col>
+              ))
+            )}
+          </Row>
+        </Col>
+      ) : movies.length === 0 ? (
+        <div>The list is empty!</div>
+      ) : (
+        <>
+          {movies.map((movie) =>
+            <Col md={3} key={movie.id} className="mb-3">
+              <MovieCard
+                key={movie.id}
+                movie={movie}
+                onMovieClick={(newSelectedMovie) => {
+                  setSelectedMovie(newSelectedMovie);
+                }}
+              />
+            </Col>
+          )}
+          <Button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>
+        </>
+      )
+      }
+    </Row>
   );
 };
 
 // Props constraints
-MainView.propTypes = {
-  movie: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    imageURL: PropTypes.string,
-    director: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      bio: PropTypes.string,
-      birthYear: PropTypes.number,
-      deathYear: PropTypes.number
-    }).isRequired,
-    genre: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      description: PropTypes.string
-    }).isRequired
-  }).isRequired,
-  onBackClick: PropTypes.func.isRequired,
-  onLoggedIn: PropTypes.func.isRequired
-};
+MainView.propTypes = {};

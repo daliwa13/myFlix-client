@@ -57,7 +57,7 @@ export const MainView = () => {
     );
   }
 
-  // If a movie is selected, show the movie view
+  // If a movie is selected, show the movie view + similar movies
   if (selectedMovie) {
     const genreName = selectedMovie.genre.name;
     const similarMovies = movies.filter((film) => film.genre.name === genreName && film.id !== selectedMovie.id);
@@ -125,5 +125,6 @@ MainView.propTypes = {
       description: PropTypes.string
     }).isRequired
   }).isRequired,
-  onBackClick: PropTypes.func.isRequired
+  onBackClick: PropTypes.func.isRequired,
+  onLoggedIn: PropTypes.func.isRequired
 };

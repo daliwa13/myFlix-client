@@ -4,7 +4,7 @@ export const SignupView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [birthDay, setBirthDay] = useState();
+  const [birthDay, setBirthDay] = useState("");
 
   const handleSubmit = (e) => {
     //prevent reloading page which is a default behavior
@@ -75,3 +75,6 @@ export const SignupView = () => {
     </form>
   );
 };
+
+// Props constraints
+SignupView.propTypes = {}; // No props are passed to SignupView

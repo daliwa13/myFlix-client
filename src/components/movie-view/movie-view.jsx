@@ -1,7 +1,12 @@
 import PropTypes from "prop-types";
 import { Card, Button, ListGroup } from "react-bootstrap";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movies }) => {
+  const { movieId } = useParams();
+
+  const movie = movies.find((m) => m.id === movieId);
 
   return (
     <Card className="border-primary">
@@ -23,9 +28,10 @@ export const MovieView = ({ movie, onBackClick }) => {
       </ListGroup>
       <Card.Footer
         className="text-center bg-primary text-white"
-        onClick={onBackClick}
         style={{ cursor: "pointer" }}>
-        Back
+        <Link to={'/'} className="text-light">
+          Back
+        </Link>
       </Card.Footer>
     </Card>
   );

@@ -72,7 +72,7 @@ export const SignupView = () => {
           onChange={(e) => setBirthDay(e.target.value)}
         />
       </Form.Group>
-      <Button type="submit">Sign Up</Button>
+      <Button type="submit" className="mt-3">Sign Up</Button>
     </Form>
   );
 };

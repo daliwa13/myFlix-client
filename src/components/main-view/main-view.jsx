@@ -4,6 +4,7 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { ProfileView } from "../profile-view/profile-view";
 import PropTypes from "prop-types";
 import { Row, Button, Col } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -99,7 +100,7 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
 
-                  <Col md={8}>
+                  <Col md={8} lg={6}>
                     <MovieView movies={movies} />
                   </Col>
                 )
@@ -127,6 +128,21 @@ export const MainView = () => {
                     ))}
                   </>
                 )}
+              </>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <Col className="ms-3 me-3">
+                    <ProfileView movies={movies} />
+                  </Col>
+                )
+                }
               </>
             }
           />

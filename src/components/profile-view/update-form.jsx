@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Form, Button, Alert, Card } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 export const UpdateProfileForm = ({ user, onUpdateSuccess }) => {
   const [formData, setFormData] = useState({
@@ -130,3 +131,13 @@ export const UpdateProfileForm = ({ user, onUpdateSuccess }) => {
     </Card>
   );
 };
+
+// Props constraints
+UpdateProfileForm.propTypes = {
+  user: PropTypes.shape({
+    username: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    birthDate: PropTypes.string,
+  }).isRequired,
+  onUpdateSuccess: PropTypes.func,
+}

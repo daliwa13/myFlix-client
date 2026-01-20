@@ -3,6 +3,8 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Alert from "react-bootstrap/Alert";
+import { Container } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 export const DeregisterUser = () => {
   const [showConfirm, setShowConfirm] = useState(false);
@@ -46,7 +48,7 @@ export const DeregisterUser = () => {
   };
 
   return (
-    <div className="mt-4">
+    <Container className="mt-4">
       <Button variant="danger" onClick={() => setShowConfirm(true)} className="mb-3 btn-lg">
         Deregister Account
       </Button>
@@ -78,6 +80,9 @@ export const DeregisterUser = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </Container>
   );
 };
+
+// Props constraints
+DeregisterUser.propTypes = {};

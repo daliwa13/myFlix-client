@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Card, Button, ListGroup } from "react-bootstrap";
+import { Card, ListGroup } from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { FavoriteButton } from "../movie-card/favorite-button";
@@ -41,16 +41,5 @@ export const MovieView = ({ movies }) => {
 };
 
 MovieView.propTypes = {
-  movie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    imageURL: PropTypes.string,
-    director: PropTypes.shape({
-      name: PropTypes.string.isRequired
-    }).isRequired,
-    genre: PropTypes.shape({
-      name: PropTypes.string.isRequired
-    }).isRequired
-  }).isRequired,
-  onBackClick: PropTypes.func.isRequired
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

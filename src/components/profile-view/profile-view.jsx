@@ -4,8 +4,7 @@ import { FavoriteMovies } from "./favorite-movies";
 import { UpdateProfileForm } from "./update-form";
 import { DeregisterUser } from "./deregister";
 import PropTypes from "prop-types"
-import { Form, Button, Col, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Row, Container } from "react-bootstrap";
 
 
 export const ProfileView = ({ movies }) => {
@@ -54,7 +53,7 @@ export const ProfileView = ({ movies }) => {
   if (!user) return <p>No user data available.</p>;
 
   return (
-    <div className="profile-view">
+    <Container className="profile-view">
       <h2>Profile</h2>
       < UserInfo name={user.username} email={user.email} birthDay={user.birthDate} />
       <h3>Favorite Movies</h3>
@@ -63,7 +62,7 @@ export const ProfileView = ({ movies }) => {
       </Row>
       < UpdateProfileForm user={user} onUpdateSuccess={(updatedUser) => setUser(updatedUser)} />
       < DeregisterUser />
-    </div >
+    </Container>
   );
 };
 

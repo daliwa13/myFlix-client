@@ -13,7 +13,7 @@ export const MovieCard = ({ movie }) => {
       <Card.Img variant="top" src={movie.imageURL} />
       <Card.Body>
         <Card.Title className="text-primary">{movie.title}</Card.Title>
-        <Card.Text>{movie.description}</Card.Text>
+        <Card.Text>{movie.genre.name}</Card.Text>
       </Card.Body>
       <Card.Footer className="text-center bg-primary">
         <Link to={`/movies/${encodeURIComponent(movie.id)}`} className="text-light">

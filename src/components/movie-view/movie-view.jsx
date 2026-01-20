@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { Card, Button, ListGroup } from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import { FavoriteButton } from "../movie-card/favorite-button";
 
 export const MovieView = ({ movies }) => {
   const { movieId } = useParams();
@@ -32,6 +33,8 @@ export const MovieView = ({ movies }) => {
         <Link to={'/'} className="text-light">
           Back
         </Link>
+        <br></br>
+        <FavoriteButton movieId={movie.id} isFavorite={movie.isFavorite} />
       </Card.Footer>
     </Card>
   );

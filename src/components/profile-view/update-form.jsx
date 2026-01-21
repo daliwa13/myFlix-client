@@ -85,7 +85,7 @@ export const UpdateProfileForm = ({ user, onUpdateSuccess }) => {
           <Form.Control
             type="password"
             name="password"
-            value=""
+            value={formData.password || ""}
             onChange={handleChange}
             placeholder="Password (old or new) is required to update profile"
           />

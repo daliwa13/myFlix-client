@@ -58,9 +58,19 @@ export const ProfileView = ({ movies }) => {
       < UserInfo name={user.username} email={user.email} birthDay={user.birthDate} />
       <h3>Favorite Movies</h3>
       <Row>
-        < FavoriteMovies favoriteMoviesList={user.favoriteMovies} movies={movies} key={movies.id} />
+        < FavoriteMovies
+          favoriteMoviesList={user.favoriteMovies}
+          movies={movies}
+          key={movies.id}
+        />
       </Row>
-      < UpdateProfileForm user={user} onUpdateSuccess={(updatedUser) => setUser(updatedUser)} />
+      < UpdateProfileForm
+        user={user}
+        onUpdateSuccess={(updatedUser) => {
+          setUser(updatedUser);
+          localStorage.setItem("user", JSON.stringify(updatedUser));
+        }}
+      />
       < DeregisterUser />
     </Container>
   );

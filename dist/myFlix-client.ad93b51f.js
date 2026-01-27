@@ -207,7 +207,7 @@
       });
     }
   }
-})({"7HixX":[function(require,module,exports,__globalThis) {
+})({"hiyDA":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
@@ -760,7 +760,7 @@ $RefreshReg$(_c, "MyFlixApplication");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react-dom/client":"hrvwu","./components/main-view/main-view":"etjHZ","react-bootstrap":"ctEhb","./index.scss":"lJZlQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eIyLi"}],"dVPUn":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","react-dom/client":"hrvwu","./components/main-view/main-view":"etjHZ","react-bootstrap":"ctEhb","./index.scss":"lJZlQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"dVPUn":[function(require,module,exports,__globalThis) {
 'use strict';
 module.exports = require("ee51401569654d91");
 
@@ -17433,6 +17433,7 @@ var _loginView = require("../login-view/login-view");
 var _signupView = require("../signup-view/signup-view");
 var _navigationBar = require("../navigation-bar/navigation-bar");
 var _profileView = require("../profile-view/profile-view");
+var _filtering = require("./filtering");
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
@@ -17445,6 +17446,12 @@ const MainView = ()=>{
     const [movies, setMovies] = (0, _react.useState)([]);
     const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null);
     const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
+    const [searchTerm, setSearchTerm] = (0, _react.useState)("");
+    const [genreFilter, setGenreFilter] = (0, _react.useState)("All genres");
+    const genres = [
+        "All genres",
+        ...new Set(movies.map((movie)=>movie.genre.name))
+    ];
     // Fetching movies from the API
     (0, _react.useEffect)(()=>{
         if (!token) return;
@@ -17477,6 +17484,11 @@ const MainView = ()=>{
     }, [
         token
     ]);
+    const filteredMovies = movies.filter(({ title, genre })=>{
+        const machesTitle = title.toLowerCase().includes(searchTerm.trim().toLowerCase());
+        const matchesGenre = genreFilter === "All genres" || genre.name === genreFilter;
+        return machesTitle && matchesGenre;
+    });
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navigationBar.NavigationBar), {
@@ -17485,10 +17497,12 @@ const MainView = ()=>{
                     setUser(null);
                     setToken(null);
                     localStorage.clear();
-                }
+                },
+                searchTerm: searchTerm,
+                onSearchChange: setSearchTerm
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 49,
+                lineNumber: 59,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -17502,24 +17516,24 @@ const MainView = ()=>{
                                     to: "/"
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 64,
+                                    lineNumber: 76,
                                     columnNumber: 19
                                 }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                     md: 5,
                                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, {
                                         fileName: "src/components/main-view/main-view.jsx",
-                                        lineNumber: 67,
+                                        lineNumber: 79,
                                         columnNumber: 21
                                     }, void 0)
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 66,
+                                    lineNumber: 78,
                                     columnNumber: 19
                                 }, void 0)
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 59,
+                            lineNumber: 71,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -17529,7 +17543,7 @@ const MainView = ()=>{
                                     to: "/"
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 78,
+                                    lineNumber: 90,
                                     columnNumber: 19
                                 }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                     md: 5,
@@ -17540,18 +17554,18 @@ const MainView = ()=>{
                                         }
                                     }, void 0, false, {
                                         fileName: "src/components/main-view/main-view.jsx",
-                                        lineNumber: 81,
+                                        lineNumber: 93,
                                         columnNumber: 21
                                     }, void 0)
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 80,
+                                    lineNumber: 92,
                                     columnNumber: 19
                                 }, void 0)
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 73,
+                            lineNumber: 85,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -17562,13 +17576,13 @@ const MainView = ()=>{
                                     replace: true
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 98,
+                                    lineNumber: 110,
                                     columnNumber: 19
                                 }, void 0) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                     children: "The list is empty!"
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 100,
+                                    lineNumber: 112,
                                     columnNumber: 19
                                 }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                     md: 8,
@@ -17577,18 +17591,18 @@ const MainView = ()=>{
                                         movies: movies
                                     }, void 0, false, {
                                         fileName: "src/components/main-view/main-view.jsx",
-                                        lineNumber: 104,
+                                        lineNumber: 116,
                                         columnNumber: 21
                                     }, void 0)
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 103,
+                                    lineNumber: 115,
                                     columnNumber: 19
                                 }, void 0)
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 93,
+                            lineNumber: 105,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -17599,36 +17613,49 @@ const MainView = ()=>{
                                     replace: true
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 116,
+                                    lineNumber: 128,
                                     columnNumber: 19
                                 }, void 0) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                     children: "The list is empty!"
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 118,
+                                    lineNumber: 130,
                                     columnNumber: 19
                                 }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-                                    children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                            md: 6,
-                                            lg: 3,
-                                            className: "mb-3",
-                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                                movie: movie
+                                    children: [
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _filtering.Filtering), {
+                                            searchTerm: searchTerm,
+                                            onSearchChange: setSearchTerm,
+                                            genreFilter: genreFilter,
+                                            onGenreChange: setGenreFilter,
+                                            genres: genres
+                                        }, void 0, false, {
+                                            fileName: "src/components/main-view/main-view.jsx",
+                                            lineNumber: 133,
+                                            columnNumber: 21
+                                        }, void 0),
+                                        filteredMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                                                md: 6,
+                                                lg: 3,
+                                                className: "mb-3",
+                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                                                    movie: movie
+                                                }, movie.id, false, {
+                                                    fileName: "src/components/main-view/main-view.jsx",
+                                                    lineNumber: 142,
+                                                    columnNumber: 25
+                                                }, void 0)
                                             }, movie.id, false, {
                                                 fileName: "src/components/main-view/main-view.jsx",
-                                                lineNumber: 123,
-                                                columnNumber: 25
-                                            }, void 0)
-                                        }, movie.id, false, {
-                                            fileName: "src/components/main-view/main-view.jsx",
-                                            lineNumber: 122,
-                                            columnNumber: 23
-                                        }, void 0))
-                                }, void 0, false)
+                                                lineNumber: 141,
+                                                columnNumber: 23
+                                            }, void 0))
+                                    ]
+                                }, void 0, true)
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 111,
+                            lineNumber: 123,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -17639,7 +17666,7 @@ const MainView = ()=>{
                                     replace: true
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 139,
+                                    lineNumber: 158,
                                     columnNumber: 19
                                 }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                     className: "ms-3 me-3",
@@ -17647,39 +17674,39 @@ const MainView = ()=>{
                                         movies: movies
                                     }, void 0, false, {
                                         fileName: "src/components/main-view/main-view.jsx",
-                                        lineNumber: 142,
+                                        lineNumber: 161,
                                         columnNumber: 21
                                     }, void 0)
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 141,
+                                    lineNumber: 160,
                                     columnNumber: 19
                                 }, void 0)
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 134,
+                            lineNumber: 153,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 58,
+                    lineNumber: 70,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 57,
+                lineNumber: 69,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 48,
+        lineNumber: 58,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "uNI/czge+RvnQXHBmRWDX5P99DE=");
+_s(MainView, "zeZcAQChfX6jjCX1pI7GXEcBZBY=");
 _c = MainView;
 // Props constraints
 MainView.propTypes = {};
@@ -17691,7 +17718,7 @@ $RefreshReg$(_c, "MainView");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","../movie-card/movie-card":"6BY1s","../movie-view/movie-view":"dkfGy","../login-view/login-view":"8ru9P","../signup-view/signup-view":"nAl3Z","../navigation-bar/navigation-bar":"csRzL","../profile-view/profile-view":"7ZITz","prop-types":"GNqOQ","react-bootstrap":"ctEhb","react-router-dom":"61z4w","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eIyLi"}],"6BY1s":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","../movie-card/movie-card":"6BY1s","../movie-view/movie-view":"dkfGy","../login-view/login-view":"8ru9P","../signup-view/signup-view":"nAl3Z","../navigation-bar/navigation-bar":"csRzL","../profile-view/profile-view":"7ZITz","./filtering":"emZ5G","prop-types":"GNqOQ","react-bootstrap":"ctEhb","react-router-dom":"61z4w","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"6BY1s":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$f387 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$f387.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -17736,7 +17763,7 @@ const MovieCard = ({ movie })=>{
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default).Text, {
-                        children: movie.genre.name
+                        children: movie.description
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
                         lineNumber: 16,
@@ -17801,7 +17828,7 @@ $RefreshReg$(_c, "MovieCard");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","prop-types":"GNqOQ","react-bootstrap/Card":"56ajS","react-router-dom":"61z4w","./favorite-button":"cTMRc","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eIyLi"}],"GNqOQ":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","prop-types":"GNqOQ","react-bootstrap/Card":"56ajS","react-router-dom":"61z4w","./favorite-button":"cTMRc","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"GNqOQ":[function(require,module,exports,__globalThis) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -18600,7 +18627,7 @@ exports.default = Object.assign(Card, {
     ImgOverlay: (0, _cardImgOverlayDefault.default)
 });
 
-},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","./CardBody":"7Ivmj","./CardFooter":"i937s","./CardHeader":"4LG8q","./CardImg":"9sZbN","./CardImgOverlay":"gETRN","./CardLink":"ffUGV","./CardSubtitle":"8M9vk","./CardText":"ipPfo","./CardTitle":"cQy33","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"Egwmr":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","./CardBody":"7Ivmj","./CardFooter":"i937s","./CardHeader":"4LG8q","./CardImg":"9sZbN","./CardImgOverlay":"gETRN","./CardLink":"ffUGV","./CardSubtitle":"8M9vk","./CardText":"ipPfo","./CardTitle":"cQy33","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"Egwmr":[function(require,module,exports,__globalThis) {
 /*!
 	Copyright (c) 2018 Jed Watson.
 	Licensed under the MIT License (MIT), see
@@ -18724,7 +18751,7 @@ function createBootstrapComponent(Component, opts) {
 }
 exports.default = ThemeProvider;
 
-},{"react":"jMk1U","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"05iiF":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"05iiF":[function(require,module,exports,__globalThis) {
 'use strict';
 module.exports = require("c4c10cbba9862d5f");
 
@@ -18940,7 +18967,7 @@ module.exports = require("c4c10cbba9862d5f");
     };
 })();
 
-},{"593632ccebda0d3a":"jMk1U"}],"iSCUV":[function(require,module,exports,__globalThis) {
+},{"593632ccebda0d3a":"jMk1U"}],"jnFvT":[function(require,module,exports,__globalThis) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -18990,7 +19017,7 @@ const CardBody = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as: Com
 CardBody.displayName = 'CardBody';
 exports.default = CardBody;
 
-},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"i937s":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"i937s":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -19010,7 +19037,7 @@ const CardFooter = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as: C
 CardFooter.displayName = 'CardFooter';
 exports.default = CardFooter;
 
-},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"4LG8q":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"4LG8q":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -19041,7 +19068,7 @@ as: Component = 'div', ...props }, ref)=>{
 CardHeader.displayName = 'CardHeader';
 exports.default = CardHeader;
 
-},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","./CardHeaderContext":"9gqCk","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"9gqCk":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","./CardHeaderContext":"9gqCk","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"9gqCk":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -19050,7 +19077,7 @@ const context = /*#__PURE__*/ _react.createContext(null);
 context.displayName = 'CardHeaderContext';
 exports.default = context;
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"9sZbN":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"9sZbN":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -19071,7 +19098,7 @@ const CardImg = /*#__PURE__*/ _react.forwardRef(// Need to define the default "a
 CardImg.displayName = 'CardImg';
 exports.default = CardImg;
 
-},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"gETRN":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"gETRN":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -19091,7 +19118,7 @@ const CardImgOverlay = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, a
 CardImgOverlay.displayName = 'CardImgOverlay';
 exports.default = CardImgOverlay;
 
-},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"ffUGV":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"ffUGV":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -19111,7 +19138,7 @@ const CardLink = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as: Com
 CardLink.displayName = 'CardLink';
 exports.default = CardLink;
 
-},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"8M9vk":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"8M9vk":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -19134,7 +19161,7 @@ const CardSubtitle = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as:
 CardSubtitle.displayName = 'CardSubtitle';
 exports.default = CardSubtitle;
 
-},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","./divWithClassName":"7NpDo","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"7NpDo":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","./divWithClassName":"7NpDo","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"7NpDo":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -19148,7 +19175,7 @@ exports.default = (className)=>/*#__PURE__*/ // eslint-disable-next-line react/d
             className: (0, _classnamesDefault.default)(p.className, className)
         }));
 
-},{"react":"jMk1U","classnames":"Egwmr","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"ipPfo":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","classnames":"Egwmr","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"ipPfo":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -19168,7 +19195,7 @@ const CardText = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as: Com
 CardText.displayName = 'CardText';
 exports.default = CardText;
 
-},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"cQy33":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"cQy33":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -19191,7 +19218,7 @@ const CardTitle = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as: Co
 CardTitle.displayName = 'CardTitle';
 exports.default = CardTitle;
 
-},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","./divWithClassName":"7NpDo","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"61z4w":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","./divWithClassName":"7NpDo","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"61z4w":[function(require,module,exports,__globalThis) {
 /**
  * React Router DOM v6.30.3
  *
@@ -20643,7 +20670,7 @@ let savedScrollPositions = {};
     return (0, _router.matchPath)(path.pathname, nextPath) != null || (0, _router.matchPath)(path.pathname, currentPath) != null;
 }
 
-},{"react":"jMk1U","react-dom":"i4X7T","react-router":"4ChVy","@remix-run/router":"2GHDR","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"4ChVy":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","react-dom":"i4X7T","react-router":"4ChVy","@remix-run/router":"2GHDR","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"4ChVy":[function(require,module,exports,__globalThis) {
 /**
  * React Router v6.30.3
  *
@@ -21946,7 +21973,7 @@ function createMemoryRouter(routes, opts) {
     }).initialize();
 }
 
-},{"react":"jMk1U","@remix-run/router":"2GHDR","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"2GHDR":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@remix-run/router":"2GHDR","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"2GHDR":[function(require,module,exports,__globalThis) {
 /**
  * @remix-run/router v1.23.2
  *
@@ -26455,7 +26482,7 @@ function persistAppliedTransitions(_window, transitions) {
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"cTMRc":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"cTMRc":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$e707 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$e707.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -26528,7 +26555,7 @@ $RefreshReg$(_c, "FavoriteButton");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","react-bootstrap":"ctEhb","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eIyLi"}],"ctEhb":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","react-bootstrap":"ctEhb","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"ctEhb":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Accordion", ()=>(0, _accordionDefault.default));
@@ -26866,7 +26893,7 @@ var _toggleButtonGroupDefault = parcelHelpers.interopDefault(_toggleButtonGroup)
 var _tooltip = require("./Tooltip");
 var _tooltipDefault = parcelHelpers.interopDefault(_tooltip);
 
-},{"./Accordion":false,"./AccordionContext":false,"./AccordionCollapse":false,"./AccordionButton":false,"./AccordionBody":false,"./AccordionHeader":false,"./AccordionItem":false,"./Alert":"aR4Gi","./AlertHeading":false,"./AlertLink":false,"./Anchor":false,"./Badge":false,"./Breadcrumb":false,"./BreadcrumbItem":false,"./Button":"kNKIo","./ButtonGroup":false,"./ButtonToolbar":false,"./Card":"56ajS","./CardBody":false,"./CardFooter":false,"./CardGroup":false,"./CardHeader":false,"./CardImg":false,"./CardImgOverlay":false,"./CardLink":false,"./CardSubtitle":false,"./CardText":false,"./CardTitle":false,"./Carousel":false,"./CarouselCaption":false,"./CarouselItem":false,"./CloseButton":false,"./Col":"6x0qd","./Collapse":false,"./Container":"2GCvr","./Dropdown":false,"./DropdownButton":false,"./DropdownDivider":false,"./DropdownHeader":false,"./DropdownItem":false,"./DropdownItemText":false,"./DropdownMenu":false,"./DropdownToggle":false,"./Fade":false,"./Figure":false,"./FigureCaption":false,"./FigureImage":false,"./Form":"6LPqw","./FormControl":false,"./FormCheck":false,"./FormFloating":false,"./FloatingLabel":false,"./FormGroup":false,"./FormLabel":false,"./FormText":false,"./FormSelect":false,"./Image":false,"./InputGroup":false,"./ListGroup":"av3gS","./ListGroupItem":false,"./Modal":false,"./ModalBody":false,"./ModalDialog":false,"./ModalFooter":false,"./ModalHeader":false,"./ModalTitle":false,"./Nav":"8jrcb","./Navbar":"2Lmwo","./NavbarBrand":false,"./NavbarCollapse":false,"./NavbarOffcanvas":false,"./NavbarText":false,"./NavbarToggle":false,"./NavDropdown":false,"./NavItem":false,"./NavLink":false,"./Offcanvas":false,"./OffcanvasBody":false,"./OffcanvasHeader":false,"./OffcanvasTitle":false,"./OffcanvasToggling":false,"./Overlay":false,"./OverlayTrigger":false,"./PageItem":false,"./Pagination":false,"./Placeholder":false,"./PlaceholderButton":false,"./Popover":false,"./PopoverBody":false,"./PopoverHeader":false,"./ProgressBar":false,"./Ratio":false,"./Row":"2DPD4","./Spinner":false,"./SplitButton":false,"./SSRProvider":false,"./Stack":false,"./Tab":false,"./TabContainer":false,"./TabContent":false,"./Table":false,"./TabPane":false,"./Tabs":false,"./ThemeProvider":false,"./Toast":false,"./ToastBody":false,"./ToastContainer":false,"./ToastHeader":false,"./ToggleButton":false,"./ToggleButtonGroup":false,"./Tooltip":false,"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"aR4Gi":[function(require,module,exports,__globalThis) {
+},{"./Accordion":false,"./AccordionContext":false,"./AccordionCollapse":false,"./AccordionButton":false,"./AccordionBody":false,"./AccordionHeader":false,"./AccordionItem":false,"./Alert":"aR4Gi","./AlertHeading":false,"./AlertLink":false,"./Anchor":false,"./Badge":false,"./Breadcrumb":false,"./BreadcrumbItem":false,"./Button":"kNKIo","./ButtonGroup":false,"./ButtonToolbar":false,"./Card":"56ajS","./CardBody":false,"./CardFooter":false,"./CardGroup":false,"./CardHeader":false,"./CardImg":false,"./CardImgOverlay":false,"./CardLink":false,"./CardSubtitle":false,"./CardText":false,"./CardTitle":false,"./Carousel":false,"./CarouselCaption":false,"./CarouselItem":false,"./CloseButton":false,"./Col":"6x0qd","./Collapse":false,"./Container":"2GCvr","./Dropdown":false,"./DropdownButton":false,"./DropdownDivider":false,"./DropdownHeader":false,"./DropdownItem":false,"./DropdownItemText":false,"./DropdownMenu":false,"./DropdownToggle":false,"./Fade":false,"./Figure":false,"./FigureCaption":false,"./FigureImage":false,"./Form":"6LPqw","./FormControl":false,"./FormCheck":false,"./FormFloating":false,"./FloatingLabel":false,"./FormGroup":false,"./FormLabel":false,"./FormText":false,"./FormSelect":false,"./Image":false,"./InputGroup":"jh59p","./ListGroup":"av3gS","./ListGroupItem":false,"./Modal":false,"./ModalBody":false,"./ModalDialog":false,"./ModalFooter":false,"./ModalHeader":false,"./ModalTitle":false,"./Nav":"8jrcb","./Navbar":"2Lmwo","./NavbarBrand":false,"./NavbarCollapse":false,"./NavbarOffcanvas":false,"./NavbarText":false,"./NavbarToggle":false,"./NavDropdown":false,"./NavItem":false,"./NavLink":false,"./Offcanvas":false,"./OffcanvasBody":false,"./OffcanvasHeader":false,"./OffcanvasTitle":false,"./OffcanvasToggling":false,"./Overlay":false,"./OverlayTrigger":false,"./PageItem":false,"./Pagination":false,"./Placeholder":false,"./PlaceholderButton":false,"./Popover":false,"./PopoverBody":false,"./PopoverHeader":false,"./ProgressBar":false,"./Ratio":false,"./Row":"2DPD4","./Spinner":false,"./SplitButton":false,"./SSRProvider":false,"./Stack":false,"./Tab":false,"./TabContainer":false,"./TabContent":false,"./Table":false,"./TabPane":false,"./Tabs":false,"./ThemeProvider":false,"./Toast":false,"./ToastBody":false,"./ToastContainer":false,"./ToastHeader":false,"./ToggleButton":false,"./ToggleButtonGroup":false,"./Tooltip":false,"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"aR4Gi":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -26924,7 +26951,7 @@ exports.default = Object.assign(Alert, {
     Heading: (0, _alertHeadingDefault.default)
 });
 
-},{"classnames":"Egwmr","react":"jMk1U","uncontrollable":"eKG0k","@restart/hooks/useEventCallback":"2uLwi","./ThemeProvider":"gulxC","./AlertHeading":"auIEK","./AlertLink":"gnGk0","./Fade":"kNoMh","./CloseButton":"4dv1h","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"eKG0k":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","uncontrollable":"eKG0k","@restart/hooks/useEventCallback":"2uLwi","./ThemeProvider":"gulxC","./AlertHeading":"auIEK","./AlertLink":"gnGk0","./Fade":"kNoMh","./CloseButton":"4dv1h","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"eKG0k":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "useUncontrolled", ()=>(0, _hookDefault.default));
@@ -26935,7 +26962,7 @@ var _hookDefault = parcelHelpers.interopDefault(_hook);
 var _uncontrollable = require("./uncontrollable");
 var _uncontrollableDefault = parcelHelpers.interopDefault(_uncontrollable);
 
-},{"./hook":"bzIgv","./uncontrollable":"gKGW4","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"bzIgv":[function(require,module,exports,__globalThis) {
+},{"./hook":"bzIgv","./uncontrollable":"gKGW4","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"bzIgv":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "useUncontrolledProp", ()=>useUncontrolledProp);
@@ -26996,7 +27023,7 @@ function useUncontrolled(props, config) {
     }, props);
 }
 
-},{"@babel/runtime/helpers/esm/extends":"20my9","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"fls88","react":"jMk1U","./utils":"lvEXZ","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"20my9":[function(require,module,exports,__globalThis) {
+},{"@babel/runtime/helpers/esm/extends":"20my9","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"fls88","react":"jMk1U","./utils":"lvEXZ","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"20my9":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>_extends);
@@ -27010,7 +27037,7 @@ function _extends() {
     }, _extends.apply(null, arguments);
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"fls88":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"fls88":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>_objectWithoutPropertiesLoose);
@@ -27024,7 +27051,7 @@ function _objectWithoutPropertiesLoose(r, e) {
     return t;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"lvEXZ":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"lvEXZ":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "uncontrolledPropTypes", ()=>uncontrolledPropTypes);
@@ -27069,7 +27096,7 @@ function canAcceptRef(component) {
     return !!component && (typeof component !== 'function' || component.prototype && component.prototype.isReactComponent);
 }
 
-},{"invariant":"cjjDY","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"cjjDY":[function(require,module,exports,__globalThis) {
+},{"invariant":"cjjDY","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"cjjDY":[function(require,module,exports,__globalThis) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -27257,7 +27284,7 @@ function uncontrollable(Component, controlledValues, methods) {
     return WrappedComponent;
 }
 
-},{"@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"fls88","@babel/runtime/helpers/esm/extends":"20my9","@babel/runtime/helpers/esm/inheritsLoose":"jDIko","react":"jMk1U","react-lifecycles-compat":"9nhrx","invariant":"cjjDY","./utils":"lvEXZ","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"jDIko":[function(require,module,exports,__globalThis) {
+},{"@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"fls88","@babel/runtime/helpers/esm/extends":"20my9","@babel/runtime/helpers/esm/inheritsLoose":"jDIko","react":"jMk1U","react-lifecycles-compat":"9nhrx","invariant":"cjjDY","./utils":"lvEXZ","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jDIko":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>_inheritsLoose);
@@ -27267,7 +27294,7 @@ function _inheritsLoose(t, o) {
     t.prototype = Object.create(o.prototype), t.prototype.constructor = t, (0, _setPrototypeOfJsDefault.default)(t, o);
 }
 
-},{"./setPrototypeOf.js":"5Brd2","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"5Brd2":[function(require,module,exports,__globalThis) {
+},{"./setPrototypeOf.js":"5Brd2","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"5Brd2":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>_setPrototypeOf);
@@ -27277,7 +27304,7 @@ function _setPrototypeOf(t, e) {
     }, _setPrototypeOf(t, e);
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"9nhrx":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"9nhrx":[function(require,module,exports,__globalThis) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -27370,7 +27397,7 @@ function polyfill(Component) {
     return Component;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"2uLwi":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"2uLwi":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useEventCallback);
@@ -27386,7 +27413,7 @@ function useEventCallback(fn) {
     ]);
 }
 
-},{"react":"jMk1U","./useCommittedRef":"MOJLD","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"MOJLD":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","./useCommittedRef":"MOJLD","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"MOJLD":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -27409,7 +27436,7 @@ var _react = require("react");
 }
 exports.default = useCommittedRef;
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"auIEK":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"auIEK":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -27433,7 +27460,7 @@ const AlertHeading = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as:
 AlertHeading.displayName = 'AlertHeading';
 exports.default = AlertHeading;
 
-},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","./divWithClassName":"7NpDo","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"gnGk0":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","./divWithClassName":"7NpDo","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"gnGk0":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -27455,7 +27482,7 @@ const AlertLink = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as: Co
 AlertLink.displayName = 'AlertLink';
 exports.default = AlertLink;
 
-},{"react":"jMk1U","classnames":"Egwmr","@restart/ui/Anchor":"izuD6","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"izuD6":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","classnames":"Egwmr","@restart/ui/Anchor":"izuD6","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"izuD6":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "isTrivialHref", ()=>isTrivialHref);
@@ -27504,7 +27531,7 @@ function isTrivialHref(href) {
 Anchor.displayName = 'Anchor';
 exports.default = Anchor;
 
-},{"react":"jMk1U","@restart/hooks":"gOAQr","./Button":"cxoj5","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"gOAQr":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@restart/hooks":"gOAQr","./Button":"cxoj5","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"gOAQr":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "useCallbackRef", ()=>(0, _useCallbackRefDefault.default));
@@ -27547,7 +27574,7 @@ var _useImageDefault = parcelHelpers.interopDefault(_useImage);
 var _useResizeObserver = require("./useResizeObserver");
 var _useResizeObserverDefault = parcelHelpers.interopDefault(_useResizeObserver);
 
-},{"./useCallbackRef":"aKtCQ","./useCommittedRef":"9bfB7","./useEventCallback":"8ZwAX","./useEventListener":"7dwxj","./useGlobalListener":"iViIO","./useInterval":"8DMeg","./useRafInterval":"7LbZF","./useMergeState":"hE1EN","./useMergeStateFromProps":"Ihwve","./useMounted":"gvzMX","./usePrevious":"6qj9r","./useImage":"4db96","./useResizeObserver":"5YfPu","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"aKtCQ":[function(require,module,exports,__globalThis) {
+},{"./useCallbackRef":"aKtCQ","./useCommittedRef":"9bfB7","./useEventCallback":"8ZwAX","./useEventListener":"7dwxj","./useGlobalListener":"iViIO","./useInterval":"8DMeg","./useRafInterval":"7LbZF","./useMergeState":"hE1EN","./useMergeStateFromProps":"Ihwve","./useMounted":"gvzMX","./usePrevious":"6qj9r","./useImage":"4db96","./useResizeObserver":"5YfPu","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"aKtCQ":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useCallbackRef);
@@ -27556,7 +27583,7 @@ function useCallbackRef() {
     return (0, _react.useState)(null);
 }
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"9bfB7":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"9bfB7":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -27579,7 +27606,7 @@ var _react = require("react");
 }
 exports.default = useCommittedRef;
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"8ZwAX":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"8ZwAX":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useEventCallback);
@@ -27595,7 +27622,7 @@ function useEventCallback(fn) {
     ]);
 }
 
-},{"react":"jMk1U","./useCommittedRef":"9bfB7","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"7dwxj":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","./useCommittedRef":"9bfB7","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"7dwxj":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useEventListener);
@@ -27613,7 +27640,7 @@ function useEventListener(eventTarget, event, listener, capture = false) {
     ]);
 }
 
-},{"react":"jMk1U","./useEventCallback":"8ZwAX","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"iViIO":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","./useEventCallback":"8ZwAX","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"iViIO":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useGlobalListener);
@@ -27625,7 +27652,7 @@ function useGlobalListener(event, handler, capture = false) {
     return (0, _useEventListenerDefault.default)(documentTarget, event, handler, capture);
 }
 
-},{"./useEventListener":"7dwxj","react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"8DMeg":[function(require,module,exports,__globalThis) {
+},{"./useEventListener":"7dwxj","react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"8DMeg":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -27711,7 +27738,7 @@ var _useCommittedRefDefault = parcelHelpers.interopDefault(_useCommittedRef);
 }
 exports.default = useInterval;
 
-},{"react":"jMk1U","./useCommittedRef":"9bfB7","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"7LbZF":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","./useCommittedRef":"9bfB7","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"7LbZF":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -27742,7 +27769,7 @@ function useRafInterval(fn, ms, paused = false) {
 }
 exports.default = useRafInterval;
 
-},{"react":"jMk1U","./useCommittedRef":"9bfB7","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"hE1EN":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","./useCommittedRef":"9bfB7","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"hE1EN":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useMergeState);
@@ -27765,7 +27792,7 @@ function useMergeState(initialState) {
     ];
 }
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"Ihwve":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"Ihwve":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useMergeStateFromProps);
@@ -27781,7 +27808,7 @@ function useMergeStateFromProps(props, gDSFP, initialState) {
     ];
 }
 
-},{"./useMergeState":"hE1EN","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"gvzMX":[function(require,module,exports,__globalThis) {
+},{"./useMergeState":"hE1EN","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"gvzMX":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useMounted);
@@ -27798,7 +27825,7 @@ function useMounted() {
     return isMounted.current;
 }
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"6qj9r":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"6qj9r":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>usePrevious);
@@ -27811,7 +27838,7 @@ function usePrevious(value) {
     return ref.current;
 }
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"4db96":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"4db96":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useImage);
@@ -27863,7 +27890,7 @@ function useImage(imageOrUrl, crossOrigin) {
     return state;
 }
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"5YfPu":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"5YfPu":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useResizeObserver);
@@ -27899,7 +27926,7 @@ function useResizeObserver(element) {
     return rect;
 }
 
-},{"react":"jMk1U","./useIsomorphicEffect":"2D2VF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"2D2VF":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","./useIsomorphicEffect":"2D2VF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"2D2VF":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -27917,7 +27944,7 @@ const isDOM = typeof document !== 'undefined';
  * @category effects
  */ exports.default = isDOM || isReactNative ? (0, _react.useLayoutEffect) : (0, _react.useEffect);
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"cxoj5":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"cxoj5":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "isTrivialHref", ()=>isTrivialHref);
@@ -28004,7 +28031,7 @@ const Button = /*#__PURE__*/ _react.forwardRef((_ref, ref)=>{
 Button.displayName = 'Button';
 exports.default = Button;
 
-},{"react":"jMk1U","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"kNoMh":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"kNoMh":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -28053,7 +28080,7 @@ const Fade = /*#__PURE__*/ _react.forwardRef(({ className, children, transitionC
 Fade.displayName = 'Fade';
 exports.default = Fade;
 
-},{"classnames":"Egwmr","react":"jMk1U","react-transition-group/Transition":"hAmWn","@restart/ui/utils":"9WvAD","./transitionEndListener":"emmfn","./triggerBrowserReflow":"dWP0P","./TransitionWrapper":"bGHRH","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"hAmWn":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","react-transition-group/Transition":"hAmWn","@restart/ui/utils":"9WvAD","./transitionEndListener":"emmfn","./triggerBrowserReflow":"dWP0P","./TransitionWrapper":"bGHRH","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"hAmWn":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "UNMOUNTED", ()=>UNMOUNTED);
@@ -28569,14 +28596,14 @@ Transition.ENTERED = ENTERED;
 Transition.EXITING = EXITING;
 exports.default = Transition;
 
-},{"@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"fls88","@babel/runtime/helpers/esm/inheritsLoose":"jDIko","prop-types":"GNqOQ","react":"jMk1U","react-dom":"i4X7T","./config":"5BfDx","./utils/PropTypes":"cWwSk","./TransitionGroupContext":"02D2e","./utils/reflow":"962ni","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"5BfDx":[function(require,module,exports,__globalThis) {
+},{"@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"fls88","@babel/runtime/helpers/esm/inheritsLoose":"jDIko","prop-types":"GNqOQ","react":"jMk1U","react-dom":"i4X7T","./config":"5BfDx","./utils/PropTypes":"cWwSk","./TransitionGroupContext":"02D2e","./utils/reflow":"962ni","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"5BfDx":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 exports.default = {
     disabled: false
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"cWwSk":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"cWwSk":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "timeoutsShape", ()=>timeoutsShape);
@@ -28608,14 +28635,14 @@ var classNamesShape = (0, _propTypesDefault.default).oneOfType([
     })
 ]);
 
-},{"prop-types":"GNqOQ","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"02D2e":[function(require,module,exports,__globalThis) {
+},{"prop-types":"GNqOQ","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"02D2e":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 exports.default = (0, _reactDefault.default).createContext(null);
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"962ni":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"962ni":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "forceReflow", ()=>forceReflow);
@@ -28623,7 +28650,7 @@ var forceReflow = function forceReflow(node) {
     return node.scrollTop;
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"9WvAD":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"9WvAD":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "isEscKey", ()=>isEscKey);
@@ -28648,7 +28675,7 @@ function getChildRef(element) {
     return childRef;
 }
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"emmfn":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"emmfn":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>transitionEndListener);
@@ -28672,7 +28699,7 @@ function transitionEndListener(element, handler) {
     }, duration + delay);
 }
 
-},{"dom-helpers/css":"7SRnC","dom-helpers/transitionEnd":"5CVci","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"7SRnC":[function(require,module,exports,__globalThis) {
+},{"dom-helpers/css":"7SRnC","dom-helpers/transitionEnd":"5CVci","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"7SRnC":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _getComputedStyle = require("./getComputedStyle");
@@ -28696,7 +28723,7 @@ function style(node, property) {
 }
 exports.default = style;
 
-},{"./getComputedStyle":"2L5kZ","./hyphenateStyle":"b0nB2","./isTransform":"4pPoG","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"2L5kZ":[function(require,module,exports,__globalThis) {
+},{"./getComputedStyle":"2L5kZ","./hyphenateStyle":"b0nB2","./isTransform":"4pPoG","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"2L5kZ":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>getComputedStyle);
@@ -28706,7 +28733,7 @@ function getComputedStyle(node, psuedoElement) {
     return (0, _ownerWindowDefault.default)(node).getComputedStyle(node, psuedoElement);
 }
 
-},{"./ownerWindow":"4v6i4","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"4v6i4":[function(require,module,exports,__globalThis) {
+},{"./ownerWindow":"4v6i4","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"4v6i4":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>ownerWindow);
@@ -28717,7 +28744,7 @@ function ownerWindow(node) {
     return doc && doc.defaultView || window;
 }
 
-},{"./ownerDocument":"isOL7","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"isOL7":[function(require,module,exports,__globalThis) {
+},{"./ownerDocument":"isOL7","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"isOL7":[function(require,module,exports,__globalThis) {
 /**
  * Returns the owner document of a given element.
  * 
@@ -28729,7 +28756,7 @@ function ownerDocument(node) {
     return node && node.ownerDocument || document;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"b0nB2":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"b0nB2":[function(require,module,exports,__globalThis) {
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -28744,7 +28771,7 @@ function hyphenateStyleName(string) {
     return (0, _hyphenateDefault.default)(string).replace(msPattern, '-ms-');
 }
 
-},{"./hyphenate":"ihrlw","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"ihrlw":[function(require,module,exports,__globalThis) {
+},{"./hyphenate":"ihrlw","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"ihrlw":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>hyphenate);
@@ -28753,7 +28780,7 @@ function hyphenate(string) {
     return string.replace(rUpper, '-$1').toLowerCase();
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"4pPoG":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"4pPoG":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>isTransform);
@@ -28762,7 +28789,7 @@ function isTransform(value) {
     return !!(value && supportedTransforms.test(value));
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"5CVci":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"5CVci":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>transitionEnd);
@@ -28803,7 +28830,7 @@ function transitionEnd(element, handler, duration, padding) {
     };
 }
 
-},{"./css":"7SRnC","./listen":"kIFKz","./triggerEvent":"303IT","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"kIFKz":[function(require,module,exports,__globalThis) {
+},{"./css":"7SRnC","./listen":"kIFKz","./triggerEvent":"303IT","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"kIFKz":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _addEventListener = require("./addEventListener");
@@ -28818,7 +28845,7 @@ function listen(node, eventName, handler, options) {
 }
 exports.default = listen;
 
-},{"./addEventListener":"btM1W","./removeEventListener":"iZl0A","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"btM1W":[function(require,module,exports,__globalThis) {
+},{"./addEventListener":"btM1W","./removeEventListener":"iZl0A","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"btM1W":[function(require,module,exports,__globalThis) {
 /* eslint-disable no-return-assign */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "optionsSupported", ()=>optionsSupported);
@@ -28867,12 +28894,12 @@ try {
 }
 exports.default = addEventListener;
 
-},{"./canUseDOM":"4KYBx","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"4KYBx":[function(require,module,exports,__globalThis) {
+},{"./canUseDOM":"4KYBx","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"4KYBx":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 exports.default = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"iZl0A":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"iZl0A":[function(require,module,exports,__globalThis) {
 /**
  * A `removeEventListener` ponyfill
  * 
@@ -28889,7 +28916,7 @@ function removeEventListener(node, eventName, handler, options) {
 }
 exports.default = removeEventListener;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"303IT":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"303IT":[function(require,module,exports,__globalThis) {
 /**
  * Triggers an event on a given element.
  * 
@@ -28910,7 +28937,7 @@ function triggerEvent(node, eventName, bubbles, cancelable) {
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"dWP0P":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"dWP0P":[function(require,module,exports,__globalThis) {
 // reading a dimension prop will cause the browser to recalculate,
 // which will let our animations work
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -28921,7 +28948,7 @@ function triggerBrowserReflow(node) {
     node.offsetHeight;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"bGHRH":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"bGHRH":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -28988,7 +29015,7 @@ const TransitionWrapper = /*#__PURE__*/ (0, _reactDefault.default).forwardRef(({
 TransitionWrapper.displayName = 'TransitionWrapper';
 exports.default = TransitionWrapper;
 
-},{"react":"jMk1U","react-transition-group/Transition":"hAmWn","@restart/hooks/useMergedRefs":"jojtD","./safeFindDOMNode":"9XLXL","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"jojtD":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","react-transition-group/Transition":"hAmWn","@restart/hooks/useMergedRefs":"jojtD","./safeFindDOMNode":"9XLXL","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jojtD":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "mergeRefs", ()=>mergeRefs);
@@ -29027,7 +29054,7 @@ function mergeRefs(refA, refB) {
 }
 exports.default = useMergedRefs;
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"9XLXL":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"9XLXL":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>safeFindDOMNode);
@@ -29040,7 +29067,7 @@ function safeFindDOMNode(componentOrElement) {
     return componentOrElement != null ? componentOrElement : null;
 }
 
-},{"react-dom":"i4X7T","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"4dv1h":[function(require,module,exports,__globalThis) {
+},{"react-dom":"i4X7T","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"4dv1h":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _propTypes = require("prop-types");
@@ -29071,7 +29098,7 @@ CloseButton.displayName = 'CloseButton';
 CloseButton.propTypes = propTypes;
 exports.default = CloseButton;
 
-},{"prop-types":"GNqOQ","react":"jMk1U","classnames":"Egwmr","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"kNKIo":[function(require,module,exports,__globalThis) {
+},{"prop-types":"GNqOQ","react":"jMk1U","classnames":"Egwmr","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"kNKIo":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -29100,7 +29127,7 @@ const Button = /*#__PURE__*/ _react.forwardRef(({ as, bsPrefix, variant = 'prima
 Button.displayName = 'Button';
 exports.default = Button;
 
-},{"classnames":"Egwmr","react":"jMk1U","@restart/ui/Button":"cxoj5","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"6x0qd":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","@restart/ui/Button":"cxoj5","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"6x0qd":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "useCol", ()=>useCol);
@@ -29153,7 +29180,7 @@ const Col = /*#__PURE__*/ _react.forwardRef(// Need to define the default "as" d
 Col.displayName = 'Col';
 exports.default = Col;
 
-},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"9jq50":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"9jq50":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -29257,7 +29284,7 @@ const Collapse = /*#__PURE__*/ (0, _reactDefault.default).forwardRef(({ onEnter,
 Collapse.displayName = 'Collapse';
 exports.default = Collapse;
 
-},{"classnames":"Egwmr","dom-helpers/css":"7SRnC","react":"jMk1U","react-transition-group/Transition":"hAmWn","@restart/ui/utils":"9WvAD","./transitionEndListener":"emmfn","./createChainedFunction":"k1mJI","./triggerBrowserReflow":"dWP0P","./TransitionWrapper":"bGHRH","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"k1mJI":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","dom-helpers/css":"7SRnC","react":"jMk1U","react-transition-group/Transition":"hAmWn","@restart/ui/utils":"9WvAD","./transitionEndListener":"emmfn","./createChainedFunction":"k1mJI","./triggerBrowserReflow":"dWP0P","./TransitionWrapper":"bGHRH","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"k1mJI":[function(require,module,exports,__globalThis) {
 /**
  * Safe chained function
  *
@@ -29282,7 +29309,7 @@ function createChainedFunction(...funcs) {
 }
 exports.default = createChainedFunction;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"2GCvr":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"2GCvr":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -29304,7 +29331,7 @@ as: Component = 'div', className, ...props }, ref)=>{
 Container.displayName = 'Container';
 exports.default = Container;
 
-},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"6LPqw":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"6LPqw":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -29369,7 +29396,7 @@ exports.default = Object.assign(Form, {
     FloatingLabel: (0, _floatingLabelDefault.default)
 });
 
-},{"classnames":"Egwmr","prop-types":"GNqOQ","react":"jMk1U","./FormCheck":"3ZlEt","./FormControl":"3wD2h","./FormFloating":"8LJY2","./FormGroup":"8rawe","./FormLabel":"1CZ4H","./FormRange":"diyIw","./FormSelect":"iKjWR","./FormText":"fSwH0","./Switch":"9opjn","./FloatingLabel":"aDGZn","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"3ZlEt":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","prop-types":"GNqOQ","react":"jMk1U","./FormCheck":"3ZlEt","./FormControl":"3wD2h","./FormFloating":"8LJY2","./FormGroup":"8rawe","./FormLabel":"1CZ4H","./FormRange":"diyIw","./FormSelect":"iKjWR","./FormText":"fSwH0","./Switch":"9opjn","./FloatingLabel":"aDGZn","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"3ZlEt":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -29436,7 +29463,7 @@ exports.default = Object.assign(FormCheck, {
     Label: (0, _formCheckLabelDefault.default)
 });
 
-},{"classnames":"Egwmr","react":"jMk1U","./Feedback":"bLUId","./FormCheckInput":"lw2Mm","./FormCheckLabel":"bompA","./FormContext":"7rs9m","./ThemeProvider":"gulxC","./ElementChildren":"iG925","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"bLUId":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","./Feedback":"bLUId","./FormCheckInput":"lw2Mm","./FormCheckLabel":"bompA","./FormContext":"7rs9m","./ThemeProvider":"gulxC","./ElementChildren":"iG925","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"bLUId":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -29464,7 +29491,7 @@ Feedback.displayName = 'Feedback';
 Feedback.propTypes = propTypes;
 exports.default = Feedback;
 
-},{"classnames":"Egwmr","react":"jMk1U","prop-types":"GNqOQ","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"lw2Mm":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","prop-types":"GNqOQ","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"lw2Mm":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -29490,7 +29517,7 @@ as: Component = 'input', ...props }, ref)=>{
 FormCheckInput.displayName = 'FormCheckInput';
 exports.default = FormCheckInput;
 
-},{"classnames":"Egwmr","react":"jMk1U","./FormContext":"7rs9m","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"7rs9m":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","./FormContext":"7rs9m","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"7rs9m":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -29499,7 +29526,7 @@ var _react = require("react");
 const FormContext = /*#__PURE__*/ _react.createContext({});
 exports.default = FormContext;
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"bompA":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"bompA":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -29523,7 +29550,7 @@ const FormCheckLabel = /*#__PURE__*/ _react.forwardRef(({ bsPrefix, className, h
 FormCheckLabel.displayName = 'FormCheckLabel';
 exports.default = FormCheckLabel;
 
-},{"classnames":"Egwmr","react":"jMk1U","./FormContext":"7rs9m","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"iG925":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","./FormContext":"7rs9m","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"iG925":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "map", ()=>map);
@@ -29559,7 +29586,7 @@ var _react = require("react");
     return _react.Children.toArray(children).some((child)=>/*#__PURE__*/ _react.isValidElement(child) && child.type === type);
 }
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"3wD2h":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"3wD2h":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -29594,7 +29621,7 @@ exports.default = Object.assign(FormControl, {
     Feedback: (0, _feedbackDefault.default)
 });
 
-},{"classnames":"Egwmr","react":"jMk1U","warning":"k76Xo","./Feedback":"bLUId","./FormContext":"7rs9m","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"k76Xo":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","warning":"k76Xo","./Feedback":"bLUId","./FormContext":"7rs9m","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"k76Xo":[function(require,module,exports,__globalThis) {
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -29657,7 +29684,7 @@ const FormFloating = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as:
 FormFloating.displayName = 'FormFloating';
 exports.default = FormFloating;
 
-},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"8rawe":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"8rawe":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -29682,7 +29709,7 @@ as: Component = 'div', ...props }, ref)=>{
 FormGroup.displayName = 'FormGroup';
 exports.default = FormGroup;
 
-},{"react":"jMk1U","./FormContext":"7rs9m","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"1CZ4H":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","./FormContext":"7rs9m","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"1CZ4H":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -29723,7 +29750,7 @@ as: Component = 'label', bsPrefix, column = false, visuallyHidden = false, class
 FormLabel.displayName = 'FormLabel';
 exports.default = FormLabel;
 
-},{"classnames":"Egwmr","react":"jMk1U","warning":"k76Xo","./Col":"6x0qd","./FormContext":"7rs9m","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"diyIw":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","warning":"k76Xo","./Col":"6x0qd","./FormContext":"7rs9m","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"diyIw":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -29748,7 +29775,7 @@ const FormRange = /*#__PURE__*/ _react.forwardRef(({ bsPrefix, className, id, ..
 FormRange.displayName = 'FormRange';
 exports.default = FormRange;
 
-},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","./FormContext":"7rs9m","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"iKjWR":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","./FormContext":"7rs9m","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"iKjWR":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -29773,7 +29800,7 @@ const FormSelect = /*#__PURE__*/ _react.forwardRef(({ bsPrefix, size, htmlSize, 
 FormSelect.displayName = 'FormSelect';
 exports.default = FormSelect;
 
-},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","./FormContext":"7rs9m","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"fSwH0":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","./FormContext":"7rs9m","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"fSwH0":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -29794,7 +29821,7 @@ const FormText = /*#__PURE__*/ _react.forwardRef(// Need to define the default "
 FormText.displayName = 'FormText';
 exports.default = FormText;
 
-},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"9opjn":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"9opjn":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -29812,7 +29839,7 @@ exports.default = Object.assign(Switch, {
     Label: (0, _formCheckDefault.default).Label
 });
 
-},{"react":"jMk1U","./FormCheck":"3ZlEt","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"aDGZn":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","./FormCheck":"3ZlEt","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"aDGZn":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -29842,7 +29869,85 @@ const FloatingLabel = /*#__PURE__*/ _react.forwardRef(({ bsPrefix, className, ch
 FloatingLabel.displayName = 'FloatingLabel';
 exports.default = FloatingLabel;
 
-},{"classnames":"Egwmr","react":"jMk1U","./FormGroup":"8rawe","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"av3gS":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","./FormGroup":"8rawe","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jh59p":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _classnames = require("classnames");
+var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
+var _react = require("react");
+var _themeProvider = require("./ThemeProvider");
+var _formCheckInput = require("./FormCheckInput");
+var _formCheckInputDefault = parcelHelpers.interopDefault(_formCheckInput);
+var _inputGroupContext = require("./InputGroupContext");
+var _inputGroupContextDefault = parcelHelpers.interopDefault(_inputGroupContext);
+var _inputGroupText = require("./InputGroupText");
+var _inputGroupTextDefault = parcelHelpers.interopDefault(_inputGroupText);
+var _jsxRuntime = require("react/jsx-runtime");
+"use client";
+const InputGroupCheckbox = (props)=>/*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _inputGroupTextDefault.default), {
+        children: /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _formCheckInputDefault.default), {
+            type: "checkbox",
+            ...props
+        })
+    });
+const InputGroupRadio = (props)=>/*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _inputGroupTextDefault.default), {
+        children: /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _formCheckInputDefault.default), {
+            type: "radio",
+            ...props
+        })
+    });
+const InputGroup = /*#__PURE__*/ _react.forwardRef(({ bsPrefix, size, hasValidation, className, // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+as: Component = 'div', ...props }, ref)=>{
+    bsPrefix = (0, _themeProvider.useBootstrapPrefix)(bsPrefix, 'input-group');
+    // Intentionally an empty object. Used in detecting if a dropdown
+    // exists under an input group.
+    const contextValue = (0, _react.useMemo)(()=>({}), []);
+    return /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _inputGroupContextDefault.default).Provider, {
+        value: contextValue,
+        children: /*#__PURE__*/ (0, _jsxRuntime.jsx)(Component, {
+            ref: ref,
+            ...props,
+            className: (0, _classnamesDefault.default)(className, bsPrefix, size && `${bsPrefix}-${size}`, hasValidation && 'has-validation')
+        })
+    });
+});
+InputGroup.displayName = 'InputGroup';
+exports.default = Object.assign(InputGroup, {
+    Text: (0, _inputGroupTextDefault.default),
+    Radio: InputGroupRadio,
+    Checkbox: InputGroupCheckbox
+});
+
+},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","./FormCheckInput":"lw2Mm","./InputGroupContext":"jRlAj","./InputGroupText":"5VeEX","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jRlAj":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _react = require("react");
+"use client";
+const context = /*#__PURE__*/ _react.createContext(null);
+context.displayName = 'InputGroupContext';
+exports.default = context;
+
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"5VeEX":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _react = require("react");
+var _classnames = require("classnames");
+var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
+var _themeProvider = require("./ThemeProvider");
+var _jsxRuntime = require("react/jsx-runtime");
+"use client";
+const InputGroupText = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as: Component = 'span', ...props }, ref)=>{
+    bsPrefix = (0, _themeProvider.useBootstrapPrefix)(bsPrefix, 'input-group-text');
+    return /*#__PURE__*/ (0, _jsxRuntime.jsx)(Component, {
+        ref: ref,
+        className: (0, _classnamesDefault.default)(className, bsPrefix),
+        ...props
+    });
+});
+InputGroupText.displayName = 'InputGroupText';
+exports.default = InputGroupText;
+
+},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"av3gS":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -29879,7 +29984,7 @@ exports.default = Object.assign(ListGroup, {
     Item: (0, _listGroupItemDefault.default)
 });
 
-},{"classnames":"Egwmr","react":"jMk1U","warning":"k76Xo","uncontrollable":"eKG0k","@restart/ui/Nav":"dPzuz","./ThemeProvider":"gulxC","./ListGroupItem":"bZFjg","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"dPzuz":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","warning":"k76Xo","uncontrollable":"eKG0k","@restart/ui/Nav":"dPzuz","./ThemeProvider":"gulxC","./ListGroupItem":"bZFjg","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"dPzuz":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _querySelectorAll = require("dom-helpers/querySelectorAll");
@@ -30007,7 +30112,7 @@ exports.default = Object.assign(Nav, {
     Item: (0, _navItemDefault.default)
 });
 
-},{"dom-helpers/querySelectorAll":"5zxKA","react":"jMk1U","@restart/hooks/useForceUpdate":"3qfTy","@restart/hooks/useMergedRefs":"cRxiR","./NavContext":"eh6HT","./SelectableContext":"HZlMW","./TabContext":"iSI1d","./DataKey":"bTMsz","./NavItem":"YepwW","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"5zxKA":[function(require,module,exports,__globalThis) {
+},{"dom-helpers/querySelectorAll":"5zxKA","react":"jMk1U","@restart/hooks/useForceUpdate":"3qfTy","@restart/hooks/useMergedRefs":"cRxiR","./NavContext":"eh6HT","./SelectableContext":"HZlMW","./TabContext":"iSI1d","./DataKey":"bTMsz","./NavItem":"YepwW","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"5zxKA":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>qsa);
@@ -30016,7 +30121,7 @@ function qsa(element, selector) {
     return toArray(element.querySelectorAll(selector));
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"3qfTy":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"3qfTy":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useForceUpdate);
@@ -30028,7 +30133,7 @@ function useForceUpdate() {
     return dispatch;
 }
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"cRxiR":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"cRxiR":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "mergeRefs", ()=>mergeRefs);
@@ -30067,7 +30172,7 @@ function mergeRefs(refA, refB) {
 }
 exports.default = useMergedRefs;
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"eh6HT":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"eh6HT":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -30075,7 +30180,7 @@ const NavContext = /*#__PURE__*/ _react.createContext(null);
 NavContext.displayName = 'NavContext';
 exports.default = NavContext;
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"HZlMW":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"HZlMW":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "makeEventKey", ()=>makeEventKey);
@@ -30087,14 +30192,14 @@ const makeEventKey = (eventKey, href = null)=>{
 };
 exports.default = SelectableContext;
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"iSI1d":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"iSI1d":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 const TabContext = /*#__PURE__*/ _react.createContext(null);
 exports.default = TabContext;
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"bTMsz":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"bTMsz":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ATTRIBUTE_PREFIX", ()=>ATTRIBUTE_PREFIX);
@@ -30110,7 +30215,7 @@ function dataProp(property) {
     return `${PROPERTY_PREFIX}${property}`;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"YepwW":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"YepwW":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "useNavItem", ()=>useNavItem);
@@ -30203,7 +30308,7 @@ const NavItem = /*#__PURE__*/ _react.forwardRef((_ref, ref)=>{
 NavItem.displayName = 'NavItem';
 exports.default = NavItem;
 
-},{"react":"jMk1U","@restart/hooks/useEventCallback":"8ZwAX","./NavContext":"eh6HT","./SelectableContext":"HZlMW","./Button":"cxoj5","./DataKey":"bTMsz","./TabContext":"iSI1d","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"bZFjg":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@restart/hooks/useEventCallback":"8ZwAX","./NavContext":"eh6HT","./SelectableContext":"HZlMW","./Button":"cxoj5","./DataKey":"bTMsz","./TabContext":"iSI1d","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"bZFjg":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -30250,7 +30355,7 @@ const ListGroupItem = /*#__PURE__*/ _react.forwardRef(({ bsPrefix, active, disab
 ListGroupItem.displayName = 'ListGroupItem';
 exports.default = ListGroupItem;
 
-},{"classnames":"Egwmr","react":"jMk1U","warning":"k76Xo","@restart/hooks/useEventCallback":"2uLwi","@restart/ui/NavItem":"YepwW","@restart/ui/SelectableContext":"HZlMW","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"dj8kw":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","warning":"k76Xo","@restart/hooks/useEventCallback":"2uLwi","@restart/ui/NavItem":"YepwW","@restart/ui/SelectableContext":"HZlMW","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"dj8kw":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -30480,7 +30585,7 @@ exports.default = Object.assign(Modal, {
     BACKDROP_TRANSITION_DURATION: 150
 });
 
-},{"classnames":"Egwmr","dom-helpers/addEventListener":"btM1W","dom-helpers/canUseDOM":"4KYBx","dom-helpers/ownerDocument":"isOL7","dom-helpers/removeEventListener":"iZl0A","dom-helpers/scrollbarSize":"kqqPe","@restart/hooks/useCallbackRef":"k6f5l","@restart/hooks/useEventCallback":"2uLwi","@restart/hooks/useMergedRefs":"jojtD","@restart/hooks/useWillUnmount":"WJkBK","dom-helpers/transitionEnd":"5CVci","react":"jMk1U","@restart/ui/Modal":"f80sk","./BootstrapModalManager":"fkD02","./Fade":"kNoMh","./ModalBody":"41WTP","./ModalContext":"4BNBH","./ModalDialog":"kTPSa","./ModalFooter":"56jld","./ModalHeader":"a71mO","./ModalTitle":"41L2a","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"kqqPe":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","dom-helpers/addEventListener":"btM1W","dom-helpers/canUseDOM":"4KYBx","dom-helpers/ownerDocument":"isOL7","dom-helpers/removeEventListener":"iZl0A","dom-helpers/scrollbarSize":"kqqPe","@restart/hooks/useCallbackRef":"k6f5l","@restart/hooks/useEventCallback":"2uLwi","@restart/hooks/useMergedRefs":"jojtD","@restart/hooks/useWillUnmount":"WJkBK","dom-helpers/transitionEnd":"5CVci","react":"jMk1U","@restart/ui/Modal":"f80sk","./BootstrapModalManager":"fkD02","./Fade":"kNoMh","./ModalBody":"41WTP","./ModalContext":"4BNBH","./ModalDialog":"kTPSa","./ModalFooter":"56jld","./ModalHeader":"a71mO","./ModalTitle":"41L2a","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"kqqPe":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>scrollbarSize);
@@ -30504,7 +30609,7 @@ function scrollbarSize(recalc) {
     return size;
 }
 
-},{"./canUseDOM":"4KYBx","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"k6f5l":[function(require,module,exports,__globalThis) {
+},{"./canUseDOM":"4KYBx","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"k6f5l":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useCallbackRef);
@@ -30513,7 +30618,7 @@ function useCallbackRef() {
     return (0, _react.useState)(null);
 }
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"WJkBK":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"WJkBK":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useWillUnmount);
@@ -30525,7 +30630,7 @@ function useWillUnmount(fn) {
     (0, _react.useEffect)(()=>()=>onUnmount.current(), []);
 }
 
-},{"./useUpdatedRef":"aAS1r","react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"aAS1r":[function(require,module,exports,__globalThis) {
+},{"./useUpdatedRef":"aAS1r","react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"aAS1r":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useUpdatedRef);
@@ -30536,7 +30641,7 @@ function useUpdatedRef(value) {
     return valueRef;
 }
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"f80sk":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"f80sk":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /* eslint-disable @typescript-eslint/no-use-before-define, react/prop-types */ var _activeElement = require("dom-helpers/activeElement");
@@ -30784,7 +30889,7 @@ exports.default = Object.assign(Modal, {
     Manager: (0, _modalManagerDefault.default)
 });
 
-},{"dom-helpers/activeElement":"1cZGi","dom-helpers/contains":"7bB4g","dom-helpers/canUseDOM":"4KYBx","dom-helpers/listen":"kIFKz","react":"jMk1U","react-dom":"i4X7T","@restart/hooks/useMounted":"gvzMX","@restart/hooks/useWillUnmount":"ljKYb","@restart/hooks/usePrevious":"6qj9r","@restart/hooks/useEventCallback":"8ZwAX","./ModalManager":"jAXnV","./useWaitForDOMRef":"hstLK","./useWindow":"9Q4WK","./ImperativeTransition":"bumCS","./utils":"9WvAD","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"1cZGi":[function(require,module,exports,__globalThis) {
+},{"dom-helpers/activeElement":"1cZGi","dom-helpers/contains":"7bB4g","dom-helpers/canUseDOM":"4KYBx","dom-helpers/listen":"kIFKz","react":"jMk1U","react-dom":"i4X7T","@restart/hooks/useMounted":"gvzMX","@restart/hooks/useWillUnmount":"ljKYb","@restart/hooks/usePrevious":"6qj9r","@restart/hooks/useEventCallback":"8ZwAX","./ModalManager":"jAXnV","./useWaitForDOMRef":"hstLK","./useWindow":"9Q4WK","./ImperativeTransition":"bumCS","./utils":"9WvAD","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"1cZGi":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>activeElement);
@@ -30804,7 +30909,7 @@ function activeElement(doc) {
     }
 }
 
-},{"./ownerDocument":"isOL7","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"7bB4g":[function(require,module,exports,__globalThis) {
+},{"./ownerDocument":"isOL7","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"7bB4g":[function(require,module,exports,__globalThis) {
 /* eslint-disable no-bitwise, no-cond-assign */ /**
  * Checks if an element contains another given element.
  * 
@@ -30820,7 +30925,7 @@ function contains(context, node) {
     if (context.compareDocumentPosition) return context === node || !!(context.compareDocumentPosition(node) & 16);
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"ljKYb":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"ljKYb":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useWillUnmount);
@@ -30832,7 +30937,7 @@ function useWillUnmount(fn) {
     (0, _react.useEffect)(()=>()=>onUnmount.current(), []);
 }
 
-},{"./useUpdatedRef":"9og4I","react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"9og4I":[function(require,module,exports,__globalThis) {
+},{"./useUpdatedRef":"9og4I","react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"9og4I":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useUpdatedRef);
@@ -30843,7 +30948,7 @@ function useUpdatedRef(value) {
     return valueRef;
 }
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"jAXnV":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jAXnV":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "OPEN_DATA_ATTRIBUTE", ()=>OPEN_DATA_ATTRIBUTE);
@@ -30932,7 +31037,7 @@ const OPEN_DATA_ATTRIBUTE = (0, _dataKey.dataAttr)('modal-open');
 }
 exports.default = ModalManager;
 
-},{"dom-helpers/css":"7SRnC","./DataKey":"bTMsz","./getScrollbarWidth":"gSXx2","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"gSXx2":[function(require,module,exports,__globalThis) {
+},{"dom-helpers/css":"7SRnC","./DataKey":"bTMsz","./getScrollbarWidth":"gSXx2","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"gSXx2":[function(require,module,exports,__globalThis) {
 /**
  * Get the width of the vertical window scrollbar if it's visible
  */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -30943,7 +31048,7 @@ function getBodyScrollbarWidth(ownerDocument = document) {
     return Math.abs(window.innerWidth - ownerDocument.documentElement.clientWidth);
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"hstLK":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"hstLK":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "resolveContainerRef", ()=>resolveContainerRef);
@@ -30986,7 +31091,7 @@ function useWaitForDOMRef(ref, onResolved) {
     return resolvedRef;
 }
 
-},{"dom-helpers/ownerDocument":"isOL7","dom-helpers/canUseDOM":"4KYBx","react":"jMk1U","./useWindow":"9Q4WK","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"9Q4WK":[function(require,module,exports,__globalThis) {
+},{"dom-helpers/ownerDocument":"isOL7","dom-helpers/canUseDOM":"4KYBx","react":"jMk1U","./useWindow":"9Q4WK","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"9Q4WK":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "WindowProvider", ()=>WindowProvider);
@@ -31000,7 +31105,7 @@ function useWindow() {
     return (0, _react.useContext)(Context);
 }
 
-},{"react":"jMk1U","dom-helpers/canUseDOM":"4KYBx","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"bumCS":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","dom-helpers/canUseDOM":"4KYBx","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"bumCS":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "useTransition", ()=>useTransition);
@@ -31085,7 +31190,7 @@ function renderTransition(component, runTransition, props) {
     return /*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _noopTransitionDefault.default), Object.assign({}, props));
 }
 
-},{"@restart/hooks/useMergedRefs":"cRxiR","@restart/hooks/useEventCallback":"8ZwAX","@restart/hooks/useIsomorphicEffect":"2D2VF","react":"jMk1U","./NoopTransition":"7LgCB","./RTGTransition":"5LS7b","./utils":"9WvAD","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"7LgCB":[function(require,module,exports,__globalThis) {
+},{"@restart/hooks/useMergedRefs":"cRxiR","@restart/hooks/useEventCallback":"8ZwAX","@restart/hooks/useIsomorphicEffect":"2D2VF","react":"jMk1U","./NoopTransition":"7LgCB","./RTGTransition":"5LS7b","./utils":"9WvAD","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"7LgCB":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _useEventCallback = require("@restart/hooks/useEventCallback");
@@ -31116,7 +31221,7 @@ function NoopTransition({ children, in: inProp, onExited, mountOnEnter, unmountO
 }
 exports.default = NoopTransition;
 
-},{"@restart/hooks/useEventCallback":"8ZwAX","@restart/hooks/useMergedRefs":"cRxiR","react":"jMk1U","./utils":"9WvAD","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"5LS7b":[function(require,module,exports,__globalThis) {
+},{"@restart/hooks/useEventCallback":"8ZwAX","@restart/hooks/useMergedRefs":"cRxiR","react":"jMk1U","./utils":"9WvAD","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"5LS7b":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -31145,7 +31250,7 @@ const RTGTransition = /*#__PURE__*/ _react.forwardRef((_ref, ref)=>{
 });
 exports.default = RTGTransition;
 
-},{"react":"jMk1U","./useRTGTransitionProps":"k884A","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"k884A":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","./useRTGTransitionProps":"k884A","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"k884A":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useRTGTransitionProps);
@@ -31226,7 +31331,7 @@ function useRTGTransitionProps(_ref) {
     });
 }
 
-},{"react":"jMk1U","@restart/hooks/useMergedRefs":"cRxiR","./utils":"9WvAD","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"fkD02":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@restart/hooks/useMergedRefs":"cRxiR","./utils":"9WvAD","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"fkD02":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getSharedManager", ()=>getSharedManager);
@@ -31292,7 +31397,7 @@ function getSharedManager(options) {
 }
 exports.default = BootstrapModalManager;
 
-},{"dom-helpers/addClass":"bA1Q4","dom-helpers/css":"7SRnC","dom-helpers/querySelectorAll":"5zxKA","dom-helpers/removeClass":"lnzZZ","@restart/ui/ModalManager":"jAXnV","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"bA1Q4":[function(require,module,exports,__globalThis) {
+},{"dom-helpers/addClass":"bA1Q4","dom-helpers/css":"7SRnC","dom-helpers/querySelectorAll":"5zxKA","dom-helpers/removeClass":"lnzZZ","@restart/ui/ModalManager":"jAXnV","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"bA1Q4":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>addClass);
@@ -31306,7 +31411,7 @@ function addClass(element, className) {
     }
 }
 
-},{"./hasClass":"aIL32","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"aIL32":[function(require,module,exports,__globalThis) {
+},{"./hasClass":"aIL32","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"aIL32":[function(require,module,exports,__globalThis) {
 /**
  * Checks if a given element has a CSS class.
  * 
@@ -31320,7 +31425,7 @@ function hasClass(element, className) {
     return (" " + (element.className.baseVal || element.className) + " ").indexOf(" " + className + " ") !== -1;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"lnzZZ":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"lnzZZ":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>removeClass);
@@ -31333,7 +31438,7 @@ function removeClass(element, className) {
     else element.setAttribute('class', replaceClassName(element.className && element.className.baseVal || '', className));
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"41WTP":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"41WTP":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -31353,7 +31458,7 @@ const ModalBody = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as: Co
 ModalBody.displayName = 'ModalBody';
 exports.default = ModalBody;
 
-},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"4BNBH":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"4BNBH":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -31363,7 +31468,7 @@ const ModalContext = /*#__PURE__*/ _react.createContext({
 });
 exports.default = ModalContext;
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"kTPSa":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"kTPSa":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -31389,7 +31494,7 @@ const ModalDialog = /*#__PURE__*/ _react.forwardRef(({ bsPrefix, className, cont
 ModalDialog.displayName = 'ModalDialog';
 exports.default = ModalDialog;
 
-},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"56jld":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"56jld":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -31409,7 +31514,7 @@ const ModalFooter = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as: 
 ModalFooter.displayName = 'ModalFooter';
 exports.default = ModalFooter;
 
-},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"a71mO":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"a71mO":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -31433,7 +31538,7 @@ const ModalHeader = /*#__PURE__*/ _react.forwardRef(({ bsPrefix, className, clos
 ModalHeader.displayName = 'ModalHeader';
 exports.default = ModalHeader;
 
-},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","./AbstractModalHeader":"kZdqe","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"kZdqe":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","./AbstractModalHeader":"kZdqe","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"kZdqe":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -31467,7 +31572,7 @@ const AbstractModalHeader = /*#__PURE__*/ _react.forwardRef(({ closeLabel = 'Clo
 AbstractModalHeader.displayName = 'AbstractModalHeader';
 exports.default = AbstractModalHeader;
 
-},{"react":"jMk1U","@restart/hooks/useEventCallback":"2uLwi","./CloseButton":"4dv1h","./ModalContext":"4BNBH","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"41L2a":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@restart/hooks/useEventCallback":"2uLwi","./CloseButton":"4dv1h","./ModalContext":"4BNBH","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"41L2a":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -31490,7 +31595,7 @@ const ModalTitle = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as: C
 ModalTitle.displayName = 'ModalTitle';
 exports.default = ModalTitle;
 
-},{"react":"jMk1U","classnames":"Egwmr","./divWithClassName":"7NpDo","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"8jrcb":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","classnames":"Egwmr","./divWithClassName":"7NpDo","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"8jrcb":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -31546,7 +31651,7 @@ exports.default = Object.assign(Nav, {
     Link: (0, _navLinkDefault.default)
 });
 
-},{"classnames":"Egwmr","react":"jMk1U","uncontrollable":"eKG0k","@restart/ui/Nav":"dPzuz","./ThemeProvider":"gulxC","./NavbarContext":"3NwrH","./CardHeaderContext":"9gqCk","./NavItem":"cDuvI","./NavLink":"7Bpoc","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"3NwrH":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","uncontrollable":"eKG0k","@restart/ui/Nav":"dPzuz","./ThemeProvider":"gulxC","./NavbarContext":"3NwrH","./CardHeaderContext":"9gqCk","./NavItem":"cDuvI","./NavLink":"7Bpoc","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"3NwrH":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -31556,7 +31661,7 @@ const context = /*#__PURE__*/ _react.createContext(null);
 context.displayName = 'NavbarContext';
 exports.default = context;
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"cDuvI":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"cDuvI":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -31576,7 +31681,7 @@ const NavItem = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as: Comp
 NavItem.displayName = 'NavItem';
 exports.default = NavItem;
 
-},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"7Bpoc":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"7Bpoc":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -31608,7 +31713,7 @@ const NavLink = /*#__PURE__*/ _react.forwardRef(({ bsPrefix, className, as: Comp
 NavLink.displayName = 'NavLink';
 exports.default = NavLink;
 
-},{"classnames":"Egwmr","react":"jMk1U","@restart/ui/Anchor":"izuD6","@restart/ui/NavItem":"YepwW","@restart/ui/SelectableContext":"HZlMW","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"2Lmwo":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","@restart/ui/Anchor":"izuD6","@restart/ui/NavItem":"YepwW","@restart/ui/SelectableContext":"HZlMW","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"2Lmwo":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -31685,7 +31790,7 @@ exports.default = Object.assign(Navbar, {
     Toggle: (0, _navbarToggleDefault.default)
 });
 
-},{"classnames":"Egwmr","react":"jMk1U","@restart/ui/SelectableContext":"HZlMW","uncontrollable":"eKG0k","./NavbarBrand":"9BslA","./NavbarCollapse":"4YpeW","./NavbarToggle":"lDrGw","./NavbarOffcanvas":"kZyIo","./ThemeProvider":"gulxC","./NavbarContext":"3NwrH","./NavbarText":"4Cm8W","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"9BslA":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","@restart/ui/SelectableContext":"HZlMW","uncontrollable":"eKG0k","./NavbarBrand":"9BslA","./NavbarCollapse":"4YpeW","./NavbarToggle":"lDrGw","./NavbarOffcanvas":"kZyIo","./ThemeProvider":"gulxC","./NavbarContext":"3NwrH","./NavbarText":"4Cm8W","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"9BslA":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -31706,7 +31811,7 @@ const NavbarBrand = /*#__PURE__*/ _react.forwardRef(({ bsPrefix, className, as, 
 NavbarBrand.displayName = 'NavbarBrand';
 exports.default = NavbarBrand;
 
-},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"4YpeW":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"4YpeW":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -31733,7 +31838,7 @@ const NavbarCollapse = /*#__PURE__*/ _react.forwardRef(({ children, bsPrefix, ..
 NavbarCollapse.displayName = 'NavbarCollapse';
 exports.default = NavbarCollapse;
 
-},{"react":"jMk1U","./Collapse":"9jq50","./ThemeProvider":"gulxC","./NavbarContext":"3NwrH","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"lDrGw":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","./Collapse":"9jq50","./ThemeProvider":"gulxC","./NavbarContext":"3NwrH","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"lDrGw":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -31769,7 +31874,7 @@ as: Component = 'button', onClick, ...props }, ref)=>{
 NavbarToggle.displayName = 'NavbarToggle';
 exports.default = NavbarToggle;
 
-},{"classnames":"Egwmr","react":"jMk1U","@restart/hooks/useEventCallback":"2uLwi","./ThemeProvider":"gulxC","./NavbarContext":"3NwrH","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"kZyIo":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","@restart/hooks/useEventCallback":"2uLwi","./ThemeProvider":"gulxC","./NavbarContext":"3NwrH","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"kZyIo":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -31798,7 +31903,7 @@ const NavbarOffcanvas = /*#__PURE__*/ _react.forwardRef(({ onHide, ...props }, r
 NavbarOffcanvas.displayName = 'NavbarOffcanvas';
 exports.default = NavbarOffcanvas;
 
-},{"react":"jMk1U","@restart/hooks/useEventCallback":"2uLwi","./Offcanvas":"hb6XP","./NavbarContext":"3NwrH","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"hb6XP":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@restart/hooks/useEventCallback":"2uLwi","./Offcanvas":"hb6XP","./NavbarContext":"3NwrH","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"hb6XP":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -31932,7 +32037,7 @@ exports.default = Object.assign(Offcanvas, {
     Title: (0, _offcanvasTitleDefault.default)
 });
 
-},{"classnames":"Egwmr","@restart/hooks/useBreakpoint":"BVjZe","@restart/hooks/useEventCallback":"2uLwi","react":"jMk1U","@restart/ui/Modal":"f80sk","./Fade":"kNoMh","./OffcanvasBody":"dKReK","./OffcanvasToggling":"k1qb0","./ModalContext":"4BNBH","./OffcanvasHeader":"23JdJ","./OffcanvasTitle":"h3Ihi","./ThemeProvider":"gulxC","./BootstrapModalManager":"fkD02","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"BVjZe":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","@restart/hooks/useBreakpoint":"BVjZe","@restart/hooks/useEventCallback":"2uLwi","react":"jMk1U","@restart/ui/Modal":"f80sk","./Fade":"kNoMh","./OffcanvasBody":"dKReK","./OffcanvasToggling":"k1qb0","./ModalContext":"4BNBH","./OffcanvasHeader":"23JdJ","./OffcanvasTitle":"h3Ihi","./ThemeProvider":"gulxC","./BootstrapModalManager":"fkD02","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"BVjZe":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /**
@@ -32043,7 +32148,7 @@ const useBreakpoint = createBreakpointHook({
 });
 exports.default = useBreakpoint;
 
-},{"./useMediaQuery":"gXRg8","react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"gXRg8":[function(require,module,exports,__globalThis) {
+},{"./useMediaQuery":"gXRg8","react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"gXRg8":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useMediaQuery);
@@ -32088,7 +32193,7 @@ function useMediaQuery(query, targetWindow = typeof window === 'undefined' ? und
     return matches;
 }
 
-},{"./useIsomorphicEffect":"63utT","react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"63utT":[function(require,module,exports,__globalThis) {
+},{"./useIsomorphicEffect":"63utT","react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"63utT":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -32106,7 +32211,7 @@ const isDOM = typeof document !== 'undefined';
  * @category effects
  */ exports.default = isDOM || isReactNative ? (0, _react.useLayoutEffect) : (0, _react.useEffect);
 
-},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"dKReK":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"dKReK":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -32126,7 +32231,7 @@ const OffcanvasBody = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as
 OffcanvasBody.displayName = 'OffcanvasBody';
 exports.default = OffcanvasBody;
 
-},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"k1qb0":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"k1qb0":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -32165,7 +32270,7 @@ const OffcanvasToggling = /*#__PURE__*/ _react.forwardRef(({ bsPrefix, className
 OffcanvasToggling.displayName = 'OffcanvasToggling';
 exports.default = OffcanvasToggling;
 
-},{"classnames":"Egwmr","react":"jMk1U","react-transition-group/Transition":"hAmWn","@restart/ui/utils":"9WvAD","./transitionEndListener":"emmfn","./TransitionWrapper":"bGHRH","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"23JdJ":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","react-transition-group/Transition":"hAmWn","@restart/ui/utils":"9WvAD","./transitionEndListener":"emmfn","./TransitionWrapper":"bGHRH","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"23JdJ":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -32189,7 +32294,7 @@ const OffcanvasHeader = /*#__PURE__*/ _react.forwardRef(({ bsPrefix, className, 
 OffcanvasHeader.displayName = 'OffcanvasHeader';
 exports.default = OffcanvasHeader;
 
-},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","./AbstractModalHeader":"kZdqe","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"h3Ihi":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","./AbstractModalHeader":"kZdqe","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"h3Ihi":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -32212,7 +32317,7 @@ const OffcanvasTitle = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, a
 OffcanvasTitle.displayName = 'OffcanvasTitle';
 exports.default = OffcanvasTitle;
 
-},{"react":"jMk1U","classnames":"Egwmr","./divWithClassName":"7NpDo","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"4Cm8W":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","classnames":"Egwmr","./divWithClassName":"7NpDo","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"4Cm8W":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -32232,7 +32337,7 @@ const NavbarText = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as: C
 NavbarText.displayName = 'NavbarText';
 exports.default = NavbarText;
 
-},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"2DPD4":[function(require,module,exports,__globalThis) {
+},{"react":"jMk1U","classnames":"Egwmr","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"2DPD4":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -32266,9 +32371,9 @@ as: Component = 'div', ...props }, ref)=>{
 Row.displayName = 'Row';
 exports.default = Row;
 
-},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"eIyLi":[function(require,module,exports,__globalThis) {
+},{"classnames":"Egwmr","react":"jMk1U","./ThemeProvider":"gulxC","react/jsx-runtime":"05iiF","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"7h6Pi":[function(require,module,exports,__globalThis) {
 "use strict";
-var Refresh = require("6499b21dde43d555");
+var Refresh = require("7422ead32dcc1e6b");
 function debounce(func, delay) {
     {
         let timeout = undefined;
@@ -32306,7 +32411,7 @@ module.exports.init = function() {
             };
         };
         if (typeof window !== 'undefined') {
-            let ErrorOverlay = require("a4fe90f29afae82f");
+            let ErrorOverlay = require("e4d875b7642f9496");
             ErrorOverlay.setEditorHandler(function(errorLocation) {
                 let file = `${errorLocation.fileName}:${errorLocation.lineNumber || 1}:${errorLocation.colNumber || 1}`;
                 fetch(module.bundle.devServer + `/__parcel_launch_editor?file=${encodeURIComponent(file)}`);
@@ -32429,11 +32534,11 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"6499b21dde43d555":"cauJL","a4fe90f29afae82f":"5Xx3t"}],"cauJL":[function(require,module,exports,__globalThis) {
+},{"7422ead32dcc1e6b":"hpiFP","e4d875b7642f9496":"gnoim"}],"hpiFP":[function(require,module,exports,__globalThis) {
 'use strict';
-module.exports = require("cd4c61e377a767d5");
+module.exports = require("96622d495519d4e");
 
-},{"cd4c61e377a767d5":"bP0Ob"}],"bP0Ob":[function(require,module,exports,__globalThis) {
+},{"96622d495519d4e":"7AD9f"}],"7AD9f":[function(require,module,exports,__globalThis) {
 /**
  * @license React
  * react-refresh-runtime.development.js
@@ -32669,7 +32774,7 @@ module.exports = require("cd4c61e377a767d5");
     exports.setSignature = setSignature;
 })();
 
-},{}],"5Xx3t":[function(require,module,exports,__globalThis) {
+},{}],"gnoim":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "setEditorHandler", ()=>$da9882e673ac146b$export$25a22ac46f1bd016);
@@ -34544,7 +34649,7 @@ function $da9882e673ac146b$var$ErrorOverlay() {
     return null;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV"}],"dkfGy":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"dkfGy":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$2262 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$2262.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -34764,7 +34869,7 @@ $RefreshReg$(_c, "MovieView");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","prop-types":"GNqOQ","react-bootstrap":"ctEhb","react-router":"4ChVy","react-router-dom":"61z4w","../movie-card/favorite-button":"cTMRc","../movie-card/movie-card":"6BY1s","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eIyLi"}],"8ru9P":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","prop-types":"GNqOQ","react-bootstrap":"ctEhb","react-router":"4ChVy","react-router-dom":"61z4w","../movie-card/favorite-button":"cTMRc","../movie-card/movie-card":"6BY1s","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"8ru9P":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$500a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$500a.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -34900,7 +35005,7 @@ $RefreshReg$(_c, "LoginView");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","prop-types":"GNqOQ","react-bootstrap":"ctEhb","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eIyLi"}],"nAl3Z":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","prop-types":"GNqOQ","react-bootstrap":"ctEhb","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"nAl3Z":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$69e4 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$69e4.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -35079,7 +35184,7 @@ $RefreshReg$(_c, "SignupView");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","react-bootstrap":"ctEhb","prop-types":"GNqOQ","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eIyLi"}],"csRzL":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","react-bootstrap":"ctEhb","prop-types":"GNqOQ","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"csRzL":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$d36d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$d36d.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -35094,6 +35199,11 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 const NavigationBar = ({ user, onLoggedOut })=>{
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        onSearchChange(searchTerm.trim());
+        onSearchChange("");
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar), {
         expand: "md",
         bg: "primary",
@@ -35103,18 +35213,18 @@ const NavigationBar = ({ user, onLoggedOut })=>{
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Brand, {
-                    href: "#home",
+                    href: "/",
                     children: "myFlix"
                 }, void 0, false, {
                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                    lineNumber: 8,
+                    lineNumber: 14,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Toggle, {
                     "aria-controls": "basic-navbar-nav"
                 }, void 0, false, {
                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                    lineNumber: 9,
+                    lineNumber: 15,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Collapse, {
@@ -35130,7 +35240,7 @@ const NavigationBar = ({ user, onLoggedOut })=>{
                                         children: "Login"
                                     }, void 0, false, {
                                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 14,
+                                        lineNumber: 20,
                                         columnNumber: 17
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
@@ -35139,7 +35249,7 @@ const NavigationBar = ({ user, onLoggedOut })=>{
                                         children: "Signup"
                                     }, void 0, false, {
                                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 17,
+                                        lineNumber: 23,
                                         columnNumber: 17
                                     }, undefined)
                                 ]
@@ -35152,7 +35262,7 @@ const NavigationBar = ({ user, onLoggedOut })=>{
                                         children: "Home"
                                     }, void 0, false, {
                                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 24,
+                                        lineNumber: 30,
                                         columnNumber: 17
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
@@ -35161,7 +35271,7 @@ const NavigationBar = ({ user, onLoggedOut })=>{
                                         children: "Profile"
                                     }, void 0, false, {
                                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 27,
+                                        lineNumber: 33,
                                         columnNumber: 17
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
@@ -35169,7 +35279,7 @@ const NavigationBar = ({ user, onLoggedOut })=>{
                                         children: "Logout"
                                     }, void 0, false, {
                                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 30,
+                                        lineNumber: 36,
                                         columnNumber: 17
                                     }, undefined)
                                 ]
@@ -35177,23 +35287,23 @@ const NavigationBar = ({ user, onLoggedOut })=>{
                         ]
                     }, void 0, true, {
                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                        lineNumber: 11,
+                        lineNumber: 17,
                         columnNumber: 11
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                    lineNumber: 10,
+                    lineNumber: 16,
                     columnNumber: 9
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/navigation-bar/navigation-bar.jsx",
-            lineNumber: 7,
+            lineNumber: 13,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-        lineNumber: 6,
+        lineNumber: 12,
         columnNumber: 5
     }, undefined);
 };
@@ -35206,7 +35316,7 @@ $RefreshReg$(_c, "NavigationBar");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react-bootstrap":"ctEhb","react-router-dom":"61z4w","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eIyLi"}],"7ZITz":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","react-bootstrap":"ctEhb","react-router-dom":"61z4w","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"7ZITz":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$e912 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$e912.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -35364,7 +35474,7 @@ $RefreshReg$(_c, "ProfileView");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","./user-info":"hRR4B","./favorite-movies":"d0sww","./update-form":"hWsPy","./deregister":"9gMwU","prop-types":"GNqOQ","react-bootstrap":"ctEhb","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eIyLi"}],"hRR4B":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","./user-info":"hRR4B","./favorite-movies":"d0sww","./update-form":"hWsPy","./deregister":"9gMwU","prop-types":"GNqOQ","react-bootstrap":"ctEhb","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"hRR4B":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$90ec = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$90ec.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -35451,7 +35561,7 @@ $RefreshReg$(_c, "UserInfo");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","prop-types":"GNqOQ","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eIyLi"}],"d0sww":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","prop-types":"GNqOQ","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"d0sww":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$6474 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$6474.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -35514,7 +35624,7 @@ $RefreshReg$(_c, "FavoriteMovies");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","prop-types":"GNqOQ","../movie-card/movie-card":"6BY1s","react-bootstrap":"ctEhb","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eIyLi"}],"hWsPy":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","prop-types":"GNqOQ","../movie-card/movie-card":"6BY1s","react-bootstrap":"ctEhb","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"hWsPy":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$092e = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$092e.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -35765,7 +35875,7 @@ $RefreshReg$(_c, "UpdateProfileForm");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","react-bootstrap":"ctEhb","prop-types":"GNqOQ","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eIyLi"}],"9gMwU":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","react-bootstrap":"ctEhb","prop-types":"GNqOQ","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"9gMwU":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$e041 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$e041.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -35928,6 +36038,127 @@ $RefreshReg$(_c, "DeregisterUser");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","react-bootstrap/Button":"kNKIo","react-bootstrap/Modal":"dj8kw","react-bootstrap/Alert":"aR4Gi","react-bootstrap":"ctEhb","prop-types":"GNqOQ","@parcel/transformer-js/src/esmodule-helpers.js":"iSCUV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eIyLi"}],"lJZlQ":[function() {},{}]},["7HixX","gYcKb"], "gYcKb", "parcelRequireaec4", {}, null, null, "http://localhost:1234")
+},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","react-bootstrap/Button":"kNKIo","react-bootstrap/Modal":"dj8kw","react-bootstrap/Alert":"aR4Gi","react-bootstrap":"ctEhb","prop-types":"GNqOQ","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"emZ5G":[function(require,module,exports,__globalThis) {
+var $parcel$ReactRefreshHelpers$89ab = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+$parcel$ReactRefreshHelpers$89ab.init();
+var prevRefreshReg = globalThis.$RefreshReg$;
+var prevRefreshSig = globalThis.$RefreshSig$;
+$parcel$ReactRefreshHelpers$89ab.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Filtering", ()=>Filtering);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _reactBootstrap = require("react-bootstrap");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+const Filtering = ({ searchTerm, onSearchChange, genreFilter, onGenreChange, genres })=>{
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
+        className: "d-flex",
+        onSubmit: handleSubmit,
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+            className: "mb-3",
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                    md: 6,
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.InputGroup), {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
+                                type: "search",
+                                placeholder: "Search title",
+                                className: "bg-light text-primary border-primary border-2",
+                                htmlSize: 70,
+                                "aria-label": "Search title",
+                                value: searchTerm,
+                                onChange: (e)=>onSearchChange(e.target.value)
+                            }, void 0, false, {
+                                fileName: "src/components/main-view/filtering.jsx",
+                                lineNumber: 14,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.InputGroup).Text, {
+                                role: "button",
+                                type: "submit",
+                                variant: "light",
+                                className: "bg-light text-primary border-primary border-2",
+                                style: {
+                                    cursor: "pointer"
+                                },
+                                children: "Search"
+                            }, void 0, false, {
+                                fileName: "src/components/main-view/filtering.jsx",
+                                lineNumber: 22,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/main-view/filtering.jsx",
+                        lineNumber: 13,
+                        columnNumber: 11
+                    }, undefined)
+                }, void 0, false, {
+                    fileName: "src/components/main-view/filtering.jsx",
+                    lineNumber: 12,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                    md: 4,
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Select, {
+                        className: "bg-light text-primary border-primary border-2",
+                        "aria-label": "Filter by genre",
+                        value: genreFilter,
+                        onChange: (e)=>onGenreChange(e.target.value),
+                        children: genres.map((genre)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
+                                value: genre,
+                                children: genre
+                            }, genre, false, {
+                                fileName: "src/components/main-view/filtering.jsx",
+                                lineNumber: 41,
+                                columnNumber: 15
+                            }, undefined))
+                    }, void 0, false, {
+                        fileName: "src/components/main-view/filtering.jsx",
+                        lineNumber: 34,
+                        columnNumber: 11
+                    }, undefined)
+                }, void 0, false, {
+                    fileName: "src/components/main-view/filtering.jsx",
+                    lineNumber: 33,
+                    columnNumber: 9
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/main-view/filtering.jsx",
+            lineNumber: 11,
+            columnNumber: 7
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/main-view/filtering.jsx",
+        lineNumber: 10,
+        columnNumber: 5
+    }, undefined);
+};
+_c = Filtering;
+// PropTypes validation
+Filtering.propTypes = {
+    searchTerm: (0, _propTypesDefault.default).string,
+    onSearchChange: (0, _propTypesDefault.default).func.isRequired,
+    genreFilter: (0, _propTypesDefault.default).string,
+    onGenreChange: (0, _propTypesDefault.default).func.isRequired,
+    genres: (0, _propTypesDefault.default).arrayOf((0, _propTypesDefault.default).string).isRequired
+};
+var _c;
+$RefreshReg$(_c, "Filtering");
+
+  $parcel$ReactRefreshHelpers$89ab.postlude(module);
+} finally {
+  globalThis.$RefreshReg$ = prevRefreshReg;
+  globalThis.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"dVPUn","react-bootstrap":"ctEhb","prop-types":"GNqOQ","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"lJZlQ":[function() {},{}]},["hiyDA","gYcKb"], "gYcKb", "parcelRequireaec4", {}, null, null, "http://localhost:1234")
 
 //# sourceMappingURL=myFlix-client.ad93b51f.js.map

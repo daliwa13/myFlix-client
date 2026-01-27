@@ -1,7 +1,13 @@
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Container, Nav, Navbar, Form, Button, InputGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export const NavigationBar = ({ user, onLoggedOut }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSearchChange(searchTerm.trim());
+    onSearchChange("");
+  };
+
   return (
     <Navbar expand="md" bg="primary" data-bs-theme="dark" sticky="top" className="mb-3">
       <Container>

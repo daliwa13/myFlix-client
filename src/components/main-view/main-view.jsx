@@ -5,6 +5,7 @@ import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view";
+import { Filtering } from "./filtering";
 import PropTypes from "prop-types";
 import { Row, Button, Col } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -15,6 +16,9 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [genreFilter, setGenreFilter] = useState("All genres");
+  const genres = ["All genres", ...new Set(movies.map((movie) => movie.genre.name))];
 
   // Fetching movies from the API
   useEffect(() => {
@@ -44,6 +48,12 @@ export const MainView = () => {
       })
   }, [token]);
 
+  const filteredMovies = movies.filter(({ title, genre }) => {
+    const machesTitle = title.toLowerCase().includes(searchTerm.trim().toLowerCase());
+    const matchesGenre = genreFilter === "All genres" || genre.name === genreFilter;
+    return machesTitle && matchesGenre;
+  });
+
   return (
     <BrowserRouter>
       <NavigationBar
@@ -53,6 +63,8 @@ export const MainView = () => {
           setToken(null);
           localStorage.clear();
         }}
+        searchTerm={searchTerm}
+        onSearchChange={setSearchTerm}
       />
       <Row className="justify-content-md-center">
         <Routes>
@@ -118,7 +130,14 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
                   <>
-                    {movies.map((movie) => (
+                    <Filtering
+                      searchTerm={searchTerm}
+                      onSearchChange={setSearchTerm}
+                      genreFilter={genreFilter}
+                      onGenreChange={setGenreFilter}
+                      genres={genres}
+                    />
+                    {filteredMovies.map((movie) => (
                       <Col md={6} lg={3} key={movie.id} className="mb-3">
                         <MovieCard
                           key={movie.id}

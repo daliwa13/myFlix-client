@@ -3,7 +3,7 @@ import { UserInfo } from "./user-info";
 import { FavoriteMovies } from "./favorite-movies";
 import { UpdateProfileForm } from "./update-form";
 import { DeregisterUser } from "./deregister";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 import { Row, Container } from "react-bootstrap";
 
 

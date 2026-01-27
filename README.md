@@ -1,9 +1,8 @@
 # myFlix-client
-
 Frontend client for the myFlix movie app.
+Available online under: https://myflix-idww.netlify.app/
 
 ## Features
-All features are still in implementation
 ### Main view
 - Returns ALL movies to the user (each movie item with an image, title, and description)
 - Filtering the list of movies with a “search” feature
@@ -36,9 +35,8 @@ Signup view
 - HTML5
 ### Additional tools and packages
 - Parcel for build creation and deployment
-- 
 
-The app will typically be available at http://localhost:1234
+Locally the app will typically be available at http://localhost:1234
 
 ## Build (development)
 - npm (in project's root location):
